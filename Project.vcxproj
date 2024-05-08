@@ -83,6 +83,8 @@
     <Link>
       <AdditionalDependencies>opencv_world490d.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OPENCV_PATH)x64\vc16\lib\</AdditionalLibraryDirectories>
+      <EntryPointSymbol>Main</EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -121,11 +123,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="easyGIMP.cpp" />
+    <ClCompile Include="MyImage.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="easyGIMP.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MyImage.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="easyGIMP.resx">

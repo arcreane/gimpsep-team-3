@@ -1,4 +1,13 @@
 #pragma once
+#include <iostream>
+#include <vcclr.h>
+#include <msclr/marshal_cppstd.h>
+
+#include "MyImage.h"
+
+
+
+
 
 namespace Project {
 
@@ -10,12 +19,15 @@ namespace Project {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for MyForm
+	/// Summary for easyGIMP
 	/// </summary>
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class easyGIMP : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+
+		MyImage* img;
+
+		easyGIMP(void)
 		{
 			InitializeComponent();
 			//
@@ -27,19 +39,32 @@ namespace Project {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~MyForm()
+		~easyGIMP()
 		{
 			if (components)
 			{
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::PictureBox^ pictureBox;
+	private: System::Windows::Forms::Button^ increase;
+	private: System::Windows::Forms::Button^ decrease;
+
+
+
+
+
+	protected:
+
+	protected:
+
+	protected:
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -48,21 +73,74 @@ namespace Project {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->pictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->increase = (gcnew System::Windows::Forms::Button());
+			this->decrease = (gcnew System::Windows::Forms::Button());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// MyForm
+			// pictureBox
 			// 
+			this->pictureBox->Location = System::Drawing::Point(135, 12);
+			this->pictureBox->Name = L"pictureBox";
+			this->pictureBox->Size = System::Drawing::Size(307, 202);
+			this->pictureBox->TabIndex = 0;
+			this->pictureBox->TabStop = false;
+			this->pictureBox->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &easyGIMP::easyGIMP_DragDrop);
+			this->pictureBox->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &easyGIMP::easyGIMP_Enter);
+			// 
+			// increase
+			// 
+			this->increase->Location = System::Drawing::Point(80, 12);
+			this->increase->Name = L"increase";
+			this->increase->Size = System::Drawing::Size(36, 23);
+			this->increase->TabIndex = 1;
+			this->increase->Text = L"+";
+			this->increase->UseVisualStyleBackColor = true;
+			this->increase->Click += gcnew System::EventHandler(this, &easyGIMP::scaleUp);
+			// 
+			// decrease
+			// 
+			this->decrease->Location = System::Drawing::Point(12, 12);
+			this->decrease->Name = L"decrease";
+			this->decrease->Size = System::Drawing::Size(36, 23);
+			this->decrease->TabIndex = 2;
+			this->decrease->Text = L"-";
+			this->decrease->UseVisualStyleBackColor = true;
+			this->decrease->Click += gcnew System::EventHandler(this, &easyGIMP::scaleDown);
+			// 
+			// easyGIMP
+			// 
+			this->AllowDrop = true;
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(663, 438);
-			this->Name = L"MyForm";
+			this->ClientSize = System::Drawing::Size(1010, 698);
+			this->Controls->Add(this->decrease);
+			this->Controls->Add(this->increase);
+			this->Controls->Add(this->pictureBox);
+			this->Name = L"easyGIMP";
 			this->Text = L"easyGIMP";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->Load += gcnew System::EventHandler(this, &easyGIMP::easyGIMP_Load);
+			this->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &easyGIMP::easyGIMP_DragDrop);
+			this->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &easyGIMP::easyGIMP_Enter);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-	};
+	private:
+
+		System::Void easyGIMP_Load(System::Object^ sender, System::EventArgs^ e);
+
+		System::Void easyGIMP_Enter(System::Object^ sender, System::Windows::Forms::DragEventArgs^ e);
+
+		void displayCVImage(MyImage* img);
+		System::Void easyGIMP_DragDrop(System::Object^ sender, System::Windows::Forms::DragEventArgs^ e);
+
+		System::Void scaleUp(System::Object^ sender, System::EventArgs^ e);
+
+		void resizePictureBox(MyImage* img);
+		System::Void scaleDown(System::Object^ sender, System::EventArgs^ e);
+
+};
 }
