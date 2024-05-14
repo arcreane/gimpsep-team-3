@@ -1,5 +1,6 @@
 #include "easyGIMP.h"
 
+
 inline System::Void Project::easyGIMP::easyGIMP_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 
@@ -24,24 +25,42 @@ bool IsImageExtension(System::String^ extension) {
 }
 
 System::Drawing::Bitmap^ ConvertCvMatToBitmap(cv::Mat& img) {
-	if (img.type() != CV_8UC3)
+	if (img.type() != CV_8UC3 && img.type() != CV_8UC1)
 	{
-		throw gcnew System::NotSupportedException("Only images of type CV_8UC3 are supported for conversion to Bitmap");
+		throw gcnew System::NotSupportedException("Only images of type CV_8UC3 and CV_8UC1 are supported for conversion to Bitmap");
 	}
 
-	//create the bitmap and get the pointer to the data
-	System::Drawing::Imaging::PixelFormat fmt(System::Drawing::Imaging::PixelFormat::Format24bppRgb);
+	System::Drawing::Imaging::PixelFormat fmt;
+	if (img.type() == CV_8UC3) {
+		fmt = System::Drawing::Imaging::PixelFormat::Format24bppRgb;
+	}
+	else if (img.type() == CV_8UC1) {
+		fmt = System::Drawing::Imaging::PixelFormat::Format8bppIndexed;
+	}
+
 	System::Drawing::Bitmap^ bmpimg = gcnew System::Drawing::Bitmap(img.cols, img.rows, fmt);
 
 	System::Drawing::Imaging::BitmapData^ data = bmpimg->LockBits(System::Drawing::Rectangle(0, 0, img.cols, img.rows), System::Drawing::Imaging::ImageLockMode::WriteOnly, fmt);
 
 	byte* dstData = reinterpret_cast<byte*>(data->Scan0.ToPointer());
-
 	unsigned char* srcData = img.data;
 
-	for (int row = 0; row < data->Height; ++row)
-	{
-		memcpy(reinterpret_cast<void*>(&dstData[row * data->Stride]), reinterpret_cast<void*>(&srcData[row * img.step]), img.cols * img.channels());
+	if (img.type() == CV_8UC3) {
+		for (int row = 0; row < data->Height; ++row) {
+			memcpy(reinterpret_cast<void*>(&dstData[row * data->Stride]), reinterpret_cast<void*>(&srcData[row * img.step]), img.cols * img.channels());
+		}
+	}
+	else if (img.type() == CV_8UC1) {
+		// Set up the grayscale palette
+		System::Drawing::Imaging::ColorPalette^ palette = bmpimg->Palette;
+		for (int i = 0; i < 256; i++) {
+			palette->Entries[i] = System::Drawing::Color::FromArgb(i, i, i);
+		}
+		bmpimg->Palette = palette;
+
+		for (int row = 0; row < data->Height; ++row) {
+			memcpy(reinterpret_cast<void*>(&dstData[row * data->Stride]), reinterpret_cast<void*>(&srcData[row * img.step]), img.cols * img.channels());
+		}
 	}
 
 	bmpimg->UnlockBits(data);
@@ -79,7 +98,7 @@ inline System::Void Project::easyGIMP::easyGIMP_DragDrop(System::Object^ sender,
 		displayCVImage(img);
 	}
 
-
+	this->Save->Visible = true;
 }
 
 void Project::easyGIMP::resizePictureBox(MyImage* img)
@@ -97,5 +116,62 @@ inline System::Void Project::easyGIMP::scaleDown(System::Object^ sender, System:
 	this->img->scaleDown();
 	resizePictureBox(img);
 	displayCVImage(img);
+}
+
+System::Void Project::easyGIMP::Detect_edges_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	this->img->undoAll();
+	this->img->detectEdges();
+	displayCVImage(img);
+}
+
+System::Void Project::easyGIMP::Turn_gray_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	this->img->undoAll();
+	this->img->turngGray();
+	displayCVImage(img);
+}
+
+System::Void Project::easyGIMP::Undo_all_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	this->img->undoAll();
+	displayCVImage(img);
+}
+
+System::Void Project::easyGIMP::Save_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	try {
+		std::string path;
+		FolderBrowserDialog^ folderBrowserDialog = gcnew FolderBrowserDialog();
+		if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			System::String^ folderPath = folderBrowserDialog->SelectedPath;
+
+			SaveFileDialog^ saveFileDialog = gcnew SaveFileDialog();
+			saveFileDialog->InitialDirectory = folderPath;
+			saveFileDialog->Filter = "All files (*.*)|*.*";
+			saveFileDialog->Title = "Specify File Name";
+
+			if (saveFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				System::String^ filePath = saveFileDialog->FileName;
+				// Convert System::String^ to std::string
+				path = msclr::interop::marshal_as<std::string>(filePath);
+				MessageBox::Show(gcnew System::String(path.c_str()), "Selected File Path");
+			}
+		}
+		this->img->save(path);
+		MessageBox::Show(gcnew System::String(path.c_str()), "File Saved", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+	}
+	catch (const std::exception& e) {
+		return;
+	}
+	
+}
+
+System::Void Project::easyGIMP::Blur_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	this->img->blur();
+	displayCVImage(img);
+
 }
 
