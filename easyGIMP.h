@@ -158,10 +158,10 @@ namespace Project {
 			// 
 			// pictureBox
 			// 
-			this->pictureBox->Location = System::Drawing::Point(106, 10);
-			this->pictureBox->Margin = System::Windows::Forms::Padding(2);
+			this->pictureBox->Location = System::Drawing::Point(201, 96);
+			this->pictureBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox->Name = L"pictureBox";
-			this->pictureBox->Size = System::Drawing::Size(175, 286);
+			this->pictureBox->Size = System::Drawing::Size(233, 352);
 			this->pictureBox->TabIndex = 0;
 			this->pictureBox->TabStop = false;
 			this->pictureBox->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &easyGIMP::easyGIMP_DragDrop);
@@ -169,10 +169,10 @@ namespace Project {
 			// 
 			// increase
 			// 
-			this->increase->Location = System::Drawing::Point(68, 10);
-			this->increase->Margin = System::Windows::Forms::Padding(2);
+			this->increase->Location = System::Drawing::Point(91, 12);
+			this->increase->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->increase->Name = L"increase";
-			this->increase->Size = System::Drawing::Size(27, 19);
+			this->increase->Size = System::Drawing::Size(36, 23);
 			this->increase->TabIndex = 1;
 			this->increase->Text = L"+";
 			this->increase->UseVisualStyleBackColor = true;
@@ -180,10 +180,10 @@ namespace Project {
 			// 
 			// decrease
 			// 
-			this->decrease->Location = System::Drawing::Point(9, 10);
-			this->decrease->Margin = System::Windows::Forms::Padding(2);
+			this->decrease->Location = System::Drawing::Point(12, 12);
+			this->decrease->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->decrease->Name = L"decrease";
-			this->decrease->Size = System::Drawing::Size(27, 19);
+			this->decrease->Size = System::Drawing::Size(36, 23);
 			this->decrease->TabIndex = 2;
 			this->decrease->Text = L"-";
 			this->decrease->UseVisualStyleBackColor = true;
@@ -191,10 +191,10 @@ namespace Project {
 			// 
 			// Detect_edges
 			// 
-			this->Detect_edges->Location = System::Drawing::Point(9, 395);
-			this->Detect_edges->Margin = System::Windows::Forms::Padding(2);
+			this->Detect_edges->Location = System::Drawing::Point(11, 484);
+			this->Detect_edges->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Detect_edges->Name = L"Detect_edges";
-			this->Detect_edges->Size = System::Drawing::Size(86, 23);
+			this->Detect_edges->Size = System::Drawing::Size(115, 28);
 			this->Detect_edges->TabIndex = 3;
 			this->Detect_edges->Text = L"Detect edges";
 			this->Detect_edges->UseVisualStyleBackColor = true;
@@ -202,10 +202,10 @@ namespace Project {
 			// 
 			// Turn_gray
 			// 
-			this->Turn_gray->Location = System::Drawing::Point(9, 368);
-			this->Turn_gray->Margin = System::Windows::Forms::Padding(2);
+			this->Turn_gray->Location = System::Drawing::Point(11, 452);
+			this->Turn_gray->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Turn_gray->Name = L"Turn_gray";
-			this->Turn_gray->Size = System::Drawing::Size(86, 23);
+			this->Turn_gray->Size = System::Drawing::Size(115, 28);
 			this->Turn_gray->TabIndex = 4;
 			this->Turn_gray->Text = L"Turn gray";
 			this->Turn_gray->UseVisualStyleBackColor = true;
@@ -213,10 +213,10 @@ namespace Project {
 			// 
 			// Undo_all
 			// 
-			this->Undo_all->Location = System::Drawing::Point(9, 33);
-			this->Undo_all->Margin = System::Windows::Forms::Padding(2);
+			this->Undo_all->Location = System::Drawing::Point(12, 41);
+			this->Undo_all->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Undo_all->Name = L"Undo_all";
-			this->Undo_all->Size = System::Drawing::Size(86, 22);
+			this->Undo_all->Size = System::Drawing::Size(115, 27);
 			this->Undo_all->TabIndex = 5;
 			this->Undo_all->Text = L"Undo All";
 			this->Undo_all->UseVisualStyleBackColor = true;
@@ -224,10 +224,10 @@ namespace Project {
 			// 
 			// Save
 			// 
-			this->Save->Location = System::Drawing::Point(11, 422);
-			this->Save->Margin = System::Windows::Forms::Padding(2);
+			this->Save->Location = System::Drawing::Point(11, 518);
+			this->Save->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Save->Name = L"Save";
-			this->Save->Size = System::Drawing::Size(86, 36);
+			this->Save->Size = System::Drawing::Size(115, 44);
 			this->Save->TabIndex = 6;
 			this->Save->Text = L"Save";
 			this->Save->UseVisualStyleBackColor = true;
@@ -236,10 +236,10 @@ namespace Project {
 			// 
 			// Blur
 			// 
-			this->Blur->Location = System::Drawing::Point(12, 341);
-			this->Blur->Margin = System::Windows::Forms::Padding(2);
+			this->Blur->Location = System::Drawing::Point(11, 420);
+			this->Blur->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Blur->Name = L"Blur";
-			this->Blur->Size = System::Drawing::Size(86, 23);
+			this->Blur->Size = System::Drawing::Size(115, 28);
 			this->Blur->TabIndex = 7;
 			this->Blur->Text = L"Blur";
 			this->Blur->UseVisualStyleBackColor = true;
@@ -249,10 +249,11 @@ namespace Project {
 			// 
 			this->contrastInput->DecimalPlaces = 1;
 			this->contrastInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
-			this->contrastInput->Location = System::Drawing::Point(3, 58);
+			this->contrastInput->Location = System::Drawing::Point(4, 71);
+			this->contrastInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->contrastInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			this->contrastInput->Name = L"contrastInput";
-			this->contrastInput->Size = System::Drawing::Size(86, 20);
+			this->contrastInput->Size = System::Drawing::Size(115, 22);
 			this->contrastInput->TabIndex = 8;
 			this->contrastInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
@@ -263,18 +264,21 @@ namespace Project {
 			this->contrastAndBrightnessBox->Controls->Add(this->brightnessLabel);
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastLabel);
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastInput);
-			this->contrastAndBrightnessBox->Location = System::Drawing::Point(9, 60);
+			this->contrastAndBrightnessBox->Location = System::Drawing::Point(12, 110);
+			this->contrastAndBrightnessBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->contrastAndBrightnessBox->Name = L"contrastAndBrightnessBox";
-			this->contrastAndBrightnessBox->Size = System::Drawing::Size(92, 155);
+			this->contrastAndBrightnessBox->Padding = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->contrastAndBrightnessBox->Size = System::Drawing::Size(123, 191);
 			this->contrastAndBrightnessBox->TabIndex = 9;
 			this->contrastAndBrightnessBox->TabStop = false;
 			this->contrastAndBrightnessBox->Text = L"Contrast and Brightness";
 			// 
 			// contrastAndBrightnessButton
 			// 
-			this->contrastAndBrightnessButton->Location = System::Drawing::Point(3, 124);
+			this->contrastAndBrightnessButton->Location = System::Drawing::Point(4, 153);
+			this->contrastAndBrightnessButton->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->contrastAndBrightnessButton->Name = L"contrastAndBrightnessButton";
-			this->contrastAndBrightnessButton->Size = System::Drawing::Size(85, 23);
+			this->contrastAndBrightnessButton->Size = System::Drawing::Size(113, 28);
 			this->contrastAndBrightnessButton->TabIndex = 12;
 			this->contrastAndBrightnessButton->Text = L"Apply";
 			this->contrastAndBrightnessButton->UseVisualStyleBackColor = true;
@@ -283,39 +287,43 @@ namespace Project {
 			// brightnessInput
 			// 
 			this->brightnessInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
-			this->brightnessInput->Location = System::Drawing::Point(3, 97);
+			this->brightnessInput->Location = System::Drawing::Point(4, 119);
+			this->brightnessInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->brightnessInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->brightnessInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->brightnessInput->Name = L"brightnessInput";
-			this->brightnessInput->Size = System::Drawing::Size(85, 20);
+			this->brightnessInput->Size = System::Drawing::Size(113, 22);
 			this->brightnessInput->TabIndex = 11;
 			// 
 			// brightnessLabel
 			// 
 			this->brightnessLabel->AutoSize = true;
-			this->brightnessLabel->Location = System::Drawing::Point(4, 81);
+			this->brightnessLabel->Location = System::Drawing::Point(5, 100);
+			this->brightnessLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->brightnessLabel->Name = L"brightnessLabel";
-			this->brightnessLabel->Size = System::Drawing::Size(62, 13);
+			this->brightnessLabel->Size = System::Drawing::Size(76, 16);
 			this->brightnessLabel->TabIndex = 10;
 			this->brightnessLabel->Text = L"Brightness :";
 			// 
 			// contrastLabel
 			// 
 			this->contrastLabel->AutoSize = true;
-			this->contrastLabel->Location = System::Drawing::Point(4, 42);
+			this->contrastLabel->Location = System::Drawing::Point(5, 52);
+			this->contrastLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->contrastLabel->Name = L"contrastLabel";
-			this->contrastLabel->Size = System::Drawing::Size(52, 13);
+			this->contrastLabel->Size = System::Drawing::Size(62, 16);
 			this->contrastLabel->TabIndex = 9;
 			this->contrastLabel->Text = L"Contrast :";
 			// 
 			// redInput
 			// 
 			this->redInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
-			this->redInput->Location = System::Drawing::Point(2, 32);
+			this->redInput->Location = System::Drawing::Point(3, 39);
+			this->redInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->redInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->redInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->redInput->Name = L"redInput";
-			this->redInput->Size = System::Drawing::Size(34, 20);
+			this->redInput->Size = System::Drawing::Size(45, 22);
 			this->redInput->TabIndex = 10;
 			// 
 			// rgbBox
@@ -327,18 +335,21 @@ namespace Project {
 			this->rgbBox->Controls->Add(this->blueInput);
 			this->rgbBox->Controls->Add(this->greenInput);
 			this->rgbBox->Controls->Add(this->redInput);
-			this->rgbBox->Location = System::Drawing::Point(9, 221);
+			this->rgbBox->Location = System::Drawing::Point(12, 308);
+			this->rgbBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->rgbBox->Name = L"rgbBox";
-			this->rgbBox->Size = System::Drawing::Size(92, 85);
+			this->rgbBox->Padding = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->rgbBox->Size = System::Drawing::Size(123, 105);
 			this->rgbBox->TabIndex = 11;
 			this->rgbBox->TabStop = false;
 			this->rgbBox->Text = L"RGB";
 			// 
 			// rgbButton
 			// 
-			this->rgbButton->Location = System::Drawing::Point(1, 58);
+			this->rgbButton->Location = System::Drawing::Point(1, 71);
+			this->rgbButton->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->rgbButton->Name = L"rgbButton";
-			this->rgbButton->Size = System::Drawing::Size(85, 23);
+			this->rgbButton->Size = System::Drawing::Size(113, 28);
 			this->rgbButton->TabIndex = 16;
 			this->rgbButton->Text = L"Apply";
 			this->rgbButton->UseVisualStyleBackColor = true;
@@ -347,55 +358,61 @@ namespace Project {
 			// blueLabel
 			// 
 			this->blueLabel->AutoSize = true;
-			this->blueLabel->Location = System::Drawing::Point(56, 16);
+			this->blueLabel->Location = System::Drawing::Point(75, 20);
+			this->blueLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->blueLabel->Name = L"blueLabel";
-			this->blueLabel->Size = System::Drawing::Size(17, 13);
+			this->blueLabel->Size = System::Drawing::Size(19, 16);
 			this->blueLabel->TabIndex = 15;
 			this->blueLabel->Text = L"B:";
 			// 
 			// greenLabel
 			// 
 			this->greenLabel->AutoSize = true;
-			this->greenLabel->Location = System::Drawing::Point(29, 16);
+			this->greenLabel->Location = System::Drawing::Point(39, 20);
+			this->greenLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->greenLabel->Name = L"greenLabel";
-			this->greenLabel->Size = System::Drawing::Size(18, 13);
+			this->greenLabel->Size = System::Drawing::Size(20, 16);
 			this->greenLabel->TabIndex = 14;
 			this->greenLabel->Text = L"G:";
 			// 
 			// redLabel
 			// 
 			this->redLabel->AutoSize = true;
-			this->redLabel->Location = System::Drawing::Point(0, 16);
+			this->redLabel->Location = System::Drawing::Point(0, 20);
+			this->redLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->redLabel->Name = L"redLabel";
-			this->redLabel->Size = System::Drawing::Size(18, 13);
+			this->redLabel->Size = System::Drawing::Size(20, 16);
 			this->redLabel->TabIndex = 13;
 			this->redLabel->Text = L"R:";
 			// 
 			// blueInput
 			// 
 			this->blueInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
-			this->blueInput->Location = System::Drawing::Point(59, 32);
+			this->blueInput->Location = System::Drawing::Point(79, 39);
+			this->blueInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->blueInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->blueInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->blueInput->Name = L"blueInput";
-			this->blueInput->Size = System::Drawing::Size(34, 20);
+			this->blueInput->Size = System::Drawing::Size(45, 22);
 			this->blueInput->TabIndex = 12;
 			// 
 			// greenInput
 			// 
 			this->greenInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
-			this->greenInput->Location = System::Drawing::Point(32, 32);
+			this->greenInput->Location = System::Drawing::Point(43, 39);
+			this->greenInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->greenInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->greenInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->greenInput->Name = L"greenInput";
-			this->greenInput->Size = System::Drawing::Size(34, 20);
+			this->greenInput->Size = System::Drawing::Size(45, 22);
 			this->greenInput->TabIndex = 11;
 			// 
 			// input_height
 			// 
-			this->input_height->Location = System::Drawing::Point(151, 40);
+			this->input_height->Location = System::Drawing::Point(201, 49);
+			this->input_height->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->input_height->Name = L"input_height";
-			this->input_height->Size = System::Drawing::Size(81, 22);
+			this->input_height->Size = System::Drawing::Size(107, 22);
 			this->input_height->TabIndex = 8;
 			this->input_height->Text = L"Height:";
 			this->input_height->Visible = false;
@@ -403,9 +420,10 @@ namespace Project {
 			// 
 			// input_width
 			// 
-			this->input_width->Location = System::Drawing::Point(238, 40);
+			this->input_width->Location = System::Drawing::Point(317, 49);
+			this->input_width->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->input_width->Name = L"input_width";
-			this->input_width->Size = System::Drawing::Size(81, 22);
+			this->input_width->Size = System::Drawing::Size(107, 22);
 			this->input_width->TabIndex = 9;
 			this->input_width->Text = L"Width:";
 			this->input_width->Visible = false;
@@ -415,9 +433,10 @@ namespace Project {
 			// 
 			this->play_resize->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->play_resize->Location = System::Drawing::Point(323, 35);
+			this->play_resize->Location = System::Drawing::Point(431, 43);
+			this->play_resize->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->play_resize->Name = L"play_resize";
-			this->play_resize->Size = System::Drawing::Size(30, 31);
+			this->play_resize->Size = System::Drawing::Size(40, 38);
 			this->play_resize->TabIndex = 10;
 			this->play_resize->Text = L"⏵";
 			this->play_resize->UseVisualStyleBackColor = true;
@@ -427,7 +446,8 @@ namespace Project {
 			// lable_for_resize
 			// 
 			this->lable_for_resize->AutoSize = true;
-			this->lable_for_resize->Location = System::Drawing::Point(150, 12);
+			this->lable_for_resize->Location = System::Drawing::Point(200, 15);
+			this->lable_for_resize->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lable_for_resize->Name = L"lable_for_resize";
 			this->lable_for_resize->Size = System::Drawing::Size(288, 16);
 			this->lable_for_resize->TabIndex = 11;
@@ -437,8 +457,9 @@ namespace Project {
 			// resize
 			// 
 			this->resize->Location = System::Drawing::Point(12, 74);
+			this->resize->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->resize->Name = L"resize";
-			this->resize->Size = System::Drawing::Size(115, 27);
+			this->resize->Size = System::Drawing::Size(115, 28);
 			this->resize->TabIndex = 12;
 			this->resize->Text = L"Resize";
 			this->resize->UseVisualStyleBackColor = true;
@@ -447,7 +468,8 @@ namespace Project {
 			// label_for_Canny
 			// 
 			this->label_for_Canny->AutoSize = true;
-			this->label_for_Canny->Location = System::Drawing::Point(151, 11);
+			this->label_for_Canny->Location = System::Drawing::Point(201, 14);
+			this->label_for_Canny->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_for_Canny->Name = L"label_for_Canny";
 			this->label_for_Canny->Size = System::Drawing::Size(526, 16);
 			this->label_for_Canny->TabIndex = 16;
@@ -457,9 +479,10 @@ namespace Project {
 			// 
 			// input_upper_threshold
 			// 
-			this->input_upper_threshold->Location = System::Drawing::Point(270, 40);
+			this->input_upper_threshold->Location = System::Drawing::Point(360, 49);
+			this->input_upper_threshold->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->input_upper_threshold->Name = L"input_upper_threshold";
-			this->input_upper_threshold->Size = System::Drawing::Size(113, 22);
+			this->input_upper_threshold->Size = System::Drawing::Size(149, 22);
 			this->input_upper_threshold->TabIndex = 14;
 			this->input_upper_threshold->Text = L"Upper threshold:";
 			this->input_upper_threshold->Visible = false;
@@ -467,9 +490,10 @@ namespace Project {
 			// 
 			// input_lower_threshold
 			// 
-			this->input_lower_threshold->Location = System::Drawing::Point(151, 40);
+			this->input_lower_threshold->Location = System::Drawing::Point(201, 49);
+			this->input_lower_threshold->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->input_lower_threshold->Name = L"input_lower_threshold";
-			this->input_lower_threshold->Size = System::Drawing::Size(113, 22);
+			this->input_lower_threshold->Size = System::Drawing::Size(149, 22);
 			this->input_lower_threshold->TabIndex = 13;
 			this->input_lower_threshold->Text = L"Lower threshold:";
 			this->input_lower_threshold->Visible = false;
@@ -477,9 +501,10 @@ namespace Project {
 			// 
 			// input_kernel_size
 			// 
-			this->input_kernel_size->Location = System::Drawing::Point(389, 40);
+			this->input_kernel_size->Location = System::Drawing::Point(519, 49);
+			this->input_kernel_size->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->input_kernel_size->Name = L"input_kernel_size";
-			this->input_kernel_size->Size = System::Drawing::Size(76, 22);
+			this->input_kernel_size->Size = System::Drawing::Size(100, 22);
 			this->input_kernel_size->TabIndex = 17;
 			this->input_kernel_size->Text = L"Kernel size:";
 			this->input_kernel_size->Visible = false;
@@ -489,9 +514,10 @@ namespace Project {
 			// 
 			this->play_Canny->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->play_Canny->Location = System::Drawing::Point(475, 35);
+			this->play_Canny->Location = System::Drawing::Point(633, 43);
+			this->play_Canny->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->play_Canny->Name = L"play_Canny";
-			this->play_Canny->Size = System::Drawing::Size(30, 31);
+			this->play_Canny->Size = System::Drawing::Size(40, 38);
 			this->play_Canny->TabIndex = 18;
 			this->play_Canny->Text = L"⏵";
 			this->play_Canny->UseVisualStyleBackColor = true;
@@ -501,10 +527,10 @@ namespace Project {
 			// easyGIMP
 			// 
 			this->AllowDrop = true;
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
-			this->ClientSize = System::Drawing::Size(1010, 698);
+			this->ClientSize = System::Drawing::Size(1347, 859);
 			this->Controls->Add(this->rgbBox);
 			this->Controls->Add(this->contrastAndBrightnessBox);
 			this->Controls->Add(this->play_Canny);
@@ -525,7 +551,7 @@ namespace Project {
 			this->Controls->Add(this->decrease);
 			this->Controls->Add(this->increase);
 			this->Controls->Add(this->pictureBox);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"easyGIMP";
 			this->Text = L"easyGIMP";
 			this->Load += gcnew System::EventHandler(this, &easyGIMP::easyGIMP_Load);
