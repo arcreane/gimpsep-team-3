@@ -61,6 +61,16 @@ namespace Project {
 	private: System::Windows::Forms::Button^ contrastAndBrightnessButton;
 
 	private: System::Windows::Forms::NumericUpDown^ brightnessInput;
+	private: System::Windows::Forms::NumericUpDown^ redInput;
+	private: System::Windows::Forms::GroupBox^ rgbBox;
+
+
+	private: System::Windows::Forms::NumericUpDown^ blueInput;
+	private: System::Windows::Forms::NumericUpDown^ greenInput;
+	private: System::Windows::Forms::Label^ blueLabel;
+	private: System::Windows::Forms::Label^ greenLabel;
+	private: System::Windows::Forms::Label^ redLabel;
+	private: System::Windows::Forms::Button^ rgbButton;
 
 
 
@@ -108,10 +118,22 @@ namespace Project {
 			this->brightnessInput = (gcnew System::Windows::Forms::NumericUpDown());
 			this->brightnessLabel = (gcnew System::Windows::Forms::Label());
 			this->contrastLabel = (gcnew System::Windows::Forms::Label());
+			this->redInput = (gcnew System::Windows::Forms::NumericUpDown());
+			this->rgbBox = (gcnew System::Windows::Forms::GroupBox());
+			this->rgbButton = (gcnew System::Windows::Forms::Button());
+			this->blueLabel = (gcnew System::Windows::Forms::Label());
+			this->greenLabel = (gcnew System::Windows::Forms::Label());
+			this->redLabel = (gcnew System::Windows::Forms::Label());
+			this->blueInput = (gcnew System::Windows::Forms::NumericUpDown());
+			this->greenInput = (gcnew System::Windows::Forms::NumericUpDown());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->contrastInput))->BeginInit();
 			this->contrastAndBrightnessBox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->brightnessInput))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->redInput))->BeginInit();
+			this->rgbBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->blueInput))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->greenInput))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox
@@ -149,7 +171,7 @@ namespace Project {
 			// 
 			// Detect_edges
 			// 
-			this->Detect_edges->Location = System::Drawing::Point(9, 332);
+			this->Detect_edges->Location = System::Drawing::Point(9, 395);
 			this->Detect_edges->Margin = System::Windows::Forms::Padding(2);
 			this->Detect_edges->Name = L"Detect_edges";
 			this->Detect_edges->Size = System::Drawing::Size(86, 23);
@@ -160,7 +182,7 @@ namespace Project {
 			// 
 			// Turn_gray
 			// 
-			this->Turn_gray->Location = System::Drawing::Point(9, 305);
+			this->Turn_gray->Location = System::Drawing::Point(9, 368);
 			this->Turn_gray->Margin = System::Windows::Forms::Padding(2);
 			this->Turn_gray->Name = L"Turn_gray";
 			this->Turn_gray->Size = System::Drawing::Size(86, 23);
@@ -182,7 +204,7 @@ namespace Project {
 			// 
 			// Save
 			// 
-			this->Save->Location = System::Drawing::Point(9, 371);
+			this->Save->Location = System::Drawing::Point(11, 422);
 			this->Save->Margin = System::Windows::Forms::Padding(2);
 			this->Save->Name = L"Save";
 			this->Save->Size = System::Drawing::Size(86, 36);
@@ -194,7 +216,7 @@ namespace Project {
 			// 
 			// Blur
 			// 
-			this->Blur->Location = System::Drawing::Point(11, 278);
+			this->Blur->Location = System::Drawing::Point(12, 341);
 			this->Blur->Margin = System::Windows::Forms::Padding(2);
 			this->Blur->Name = L"Blur";
 			this->Blur->Size = System::Drawing::Size(86, 23);
@@ -266,12 +288,96 @@ namespace Project {
 			this->contrastLabel->TabIndex = 9;
 			this->contrastLabel->Text = L"Contrast :";
 			// 
+			// redInput
+			// 
+			this->redInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
+			this->redInput->Location = System::Drawing::Point(2, 32);
+			this->redInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
+			this->redInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
+			this->redInput->Name = L"redInput";
+			this->redInput->Size = System::Drawing::Size(34, 20);
+			this->redInput->TabIndex = 10;
+			// 
+			// rgbBox
+			// 
+			this->rgbBox->Controls->Add(this->rgbButton);
+			this->rgbBox->Controls->Add(this->blueLabel);
+			this->rgbBox->Controls->Add(this->greenLabel);
+			this->rgbBox->Controls->Add(this->redLabel);
+			this->rgbBox->Controls->Add(this->blueInput);
+			this->rgbBox->Controls->Add(this->greenInput);
+			this->rgbBox->Controls->Add(this->redInput);
+			this->rgbBox->Location = System::Drawing::Point(9, 221);
+			this->rgbBox->Name = L"rgbBox";
+			this->rgbBox->Size = System::Drawing::Size(92, 85);
+			this->rgbBox->TabIndex = 11;
+			this->rgbBox->TabStop = false;
+			this->rgbBox->Text = L"RGB";
+			// 
+			// rgbButton
+			// 
+			this->rgbButton->Location = System::Drawing::Point(1, 58);
+			this->rgbButton->Name = L"rgbButton";
+			this->rgbButton->Size = System::Drawing::Size(85, 23);
+			this->rgbButton->TabIndex = 16;
+			this->rgbButton->Text = L"Apply";
+			this->rgbButton->UseVisualStyleBackColor = true;
+			this->rgbButton->Click += gcnew System::EventHandler(this, &easyGIMP::rgbButton_Click);
+			// 
+			// blueLabel
+			// 
+			this->blueLabel->AutoSize = true;
+			this->blueLabel->Location = System::Drawing::Point(56, 16);
+			this->blueLabel->Name = L"blueLabel";
+			this->blueLabel->Size = System::Drawing::Size(17, 13);
+			this->blueLabel->TabIndex = 15;
+			this->blueLabel->Text = L"B:";
+			// 
+			// greenLabel
+			// 
+			this->greenLabel->AutoSize = true;
+			this->greenLabel->Location = System::Drawing::Point(29, 16);
+			this->greenLabel->Name = L"greenLabel";
+			this->greenLabel->Size = System::Drawing::Size(18, 13);
+			this->greenLabel->TabIndex = 14;
+			this->greenLabel->Text = L"G:";
+			// 
+			// redLabel
+			// 
+			this->redLabel->AutoSize = true;
+			this->redLabel->Location = System::Drawing::Point(0, 16);
+			this->redLabel->Name = L"redLabel";
+			this->redLabel->Size = System::Drawing::Size(18, 13);
+			this->redLabel->TabIndex = 13;
+			this->redLabel->Text = L"R:";
+			// 
+			// blueInput
+			// 
+			this->blueInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
+			this->blueInput->Location = System::Drawing::Point(59, 32);
+			this->blueInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
+			this->blueInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
+			this->blueInput->Name = L"blueInput";
+			this->blueInput->Size = System::Drawing::Size(34, 20);
+			this->blueInput->TabIndex = 12;
+			// 
+			// greenInput
+			// 
+			this->greenInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
+			this->greenInput->Location = System::Drawing::Point(32, 32);
+			this->greenInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
+			this->greenInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
+			this->greenInput->Name = L"greenInput";
+			this->greenInput->Size = System::Drawing::Size(34, 20);
+			this->greenInput->TabIndex = 11;
+			// 
 			// easyGIMP
 			// 
 			this->AllowDrop = true;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(758, 567);
+			this->Controls->Add(this->rgbBox);
 			this->Controls->Add(this->contrastAndBrightnessBox);
 			this->Controls->Add(this->Blur);
 			this->Controls->Add(this->Save);
@@ -292,6 +398,11 @@ namespace Project {
 			this->contrastAndBrightnessBox->ResumeLayout(false);
 			this->contrastAndBrightnessBox->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->brightnessInput))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->redInput))->EndInit();
+			this->rgbBox->ResumeLayout(false);
+			this->rgbBox->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->blueInput))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->greenInput))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -321,5 +432,7 @@ namespace Project {
 		System::Void Blur_Click(System::Object^ sender, System::EventArgs^ e);
 
 		System::Void contrastAndBrightnessButton_Click(System::Object^ sender, System::EventArgs^ e);
+
+		System::Void rgbButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

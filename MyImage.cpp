@@ -48,6 +48,45 @@ void MyImage::brightnessAndContrastControl(double alpha, double beta)
 	this->img.convertTo(this->img, CV_8U, alpha, beta);
 }
 
+void MyImage::rgbControl(double r, double g, double b) {
+	double maxValue = 255;
+	double minValue = 0;
+	for (int y = 0; y < img.rows; y++) {
+		for (int x = 0; x < img.cols; x++) {
+			double blue = img.at<cv::Vec3b>(y, x)[0] + b;
+			if (blue >= maxValue) {
+				img.at<cv::Vec3b>(y, x)[0] = maxValue;
+			}
+			else if (blue <= minValue) {
+				img.at<cv::Vec3b>(y, x)[0] = minValue;
+			}
+			else {
+				img.at<cv::Vec3b>(y, x)[0] = blue;
+			}
+			double green = img.at<cv::Vec3b>(y, x)[1] + g;
+			if (green >= maxValue) {
+				img.at<cv::Vec3b>(y, x)[1] = maxValue;
+			}
+			else if (green <= minValue) {
+				img.at<cv::Vec3b>(y, x)[1] = minValue;
+			}
+			else {
+				img.at<cv::Vec3b>(y, x)[1] = green;
+			}
+			double red = img.at<cv::Vec3b>(y, x)[2] + r;
+			if (red >= maxValue) {
+				img.at<cv::Vec3b>(y, x)[2] = maxValue;
+			}
+			else if (red <= minValue) {
+				img.at<cv::Vec3b>(y, x)[2] = minValue;
+			}
+			else {
+				img.at<cv::Vec3b>(y, x)[2] = red;
+			}
+		}
+	}
+}
+
 void MyImage::save(std::string path)
 {
 	cv::imwrite(path, this->img);

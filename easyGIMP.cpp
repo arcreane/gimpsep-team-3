@@ -127,7 +127,6 @@ System::Void Project::easyGIMP::Detect_edges_Click(System::Object^ sender, Syste
 
 System::Void Project::easyGIMP::Turn_gray_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	this->img->undoAll();
 	this->img->turngGray();
 	displayCVImage(img);
 }
@@ -184,6 +183,21 @@ System::Void Project::easyGIMP::contrastAndBrightnessButton_Click(System::Object
 
 	img->brightnessAndContrastControl(alphaDouble, betaDouble);
 	displayCVImage(img);
+}
+
+System::Void Project::easyGIMP::rgbButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	System::Decimal decimalR = redInput->Value;
+	double rDouble = decimalR.ToDouble(decimalR);
+
+	System::Decimal decimalG = greenInput->Value;
+	double gDouble = decimalG.ToDouble(decimalG);
+
+	System::Decimal decimalB = blueInput->Value;
+	double bDouble = decimalB.ToDouble(decimalB);
+
+	img->rgbControl(rDouble, gDouble, bDouble);
+	displayCVImage(img);
+
 }
 
 

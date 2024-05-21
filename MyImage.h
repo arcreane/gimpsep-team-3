@@ -16,6 +16,7 @@ public:
 	void blur();
 	void detectEdges();
 	void brightnessAndContrastControl(double alpha, double beta);
+	void rgbControl(double r, double g, double b);
 	void save(std::string path);
 
 	void undoAll();
