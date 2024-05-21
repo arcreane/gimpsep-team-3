@@ -175,3 +175,15 @@ System::Void Project::easyGIMP::Blur_Click(System::Object^ sender, System::Event
 
 }
 
+System::Void Project::easyGIMP::contrastAndBrightnessButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	System::Decimal decimalBeta = brightnessInput->Value;
+	double betaDouble = decimalBeta.ToDouble(decimalBeta);
+
+	System::Decimal decimalAlpha = contrastInput->Value;
+	double alphaDouble = decimalAlpha.ToDouble(decimalAlpha);
+
+	img->brightnessAndContrastControl(alphaDouble, betaDouble);
+	displayCVImage(img);
+}
+
+

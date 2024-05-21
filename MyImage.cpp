@@ -43,6 +43,11 @@ void MyImage::detectEdges()
 
 }
 
+void MyImage::brightnessAndContrastControl(double alpha, double beta)
+{
+	this->img.convertTo(this->img, CV_8U, alpha, beta);
+}
+
 void MyImage::save(std::string path)
 {
 	cv::imwrite(path, this->img);
