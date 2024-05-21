@@ -120,13 +120,22 @@ inline System::Void Project::easyGIMP::scaleDown(System::Object^ sender, System:
 
 System::Void Project::easyGIMP::Detect_edges_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	this->img->undoAll();
-	this->img->detectEdges();
-	displayCVImage(img);
+	this->label_for_Canny->Visible = true;
+	this->play_Canny->Visible = true;
+	this->input_kernel_size->Visible = true;
+	this->input_lower_threshold->Visible = true;
+	this->input_upper_threshold->Visible = true;
+
+	this->lable_for_resize->Visible = false;
+	this->play_resize->Visible = false;
+	this->input_height->Visible = false;
+	this->input_width->Visible = false;
+
 }
 
 System::Void Project::easyGIMP::Turn_gray_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	this->img->undoAll();
 	this->img->turngGray();
 	displayCVImage(img);
 }
@@ -169,8 +178,121 @@ System::Void Project::easyGIMP::Save_Click(System::Object^ sender, System::Event
 
 System::Void Project::easyGIMP::Blur_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	this->img->blur();
+	this->img->blur(3);
 	displayCVImage(img);
+
+}
+
+System::Void Project::easyGIMP::resize_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	this->lable_for_resize->Visible = true;
+	this->play_resize->Visible = true;
+	this->input_height->Visible = true;
+	this->input_width->Visible = true;
+
+	this->label_for_Canny->Visible = false;
+	this->play_Canny->Visible = false;
+	this->input_kernel_size->Visible = false;
+	this->input_lower_threshold->Visible = false;
+	this->input_upper_threshold->Visible = false;
+}
+
+System::Void Project::easyGIMP::input_OnFocus(System::Object^ sender, System::EventArgs^ e)
+{
+	System::Windows::Forms::TextBox^ textBox = dynamic_cast<System::Windows::Forms::TextBox^>(sender);
+
+	if (textBox != nullptr)
+	{
+		textBox->Text = "";
+	}
+}
+
+System::Void Project::easyGIMP::play_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	checkImageDentified();
+
+	System::String^ height = this->input_height->Text;
+	System::String^ width = this->input_width->Text;
+
+
+	double h = 0;
+	double w = 0;
+	try
+	{
+		h = System::Double::Parse(height);
+		w = System::Double::Parse(width);
+
+		this->img->resize(0, 0, cv::Size(w, h));
+		resizePictureBox(img);
+		displayCVImage(img);
+	}
+	catch (System::FormatException^ e)
+	{
+		MessageBox::Show("The height and width should be rational numbers: " + e->Message);
+	}
+
+	this->lable_for_resize->Visible = false;
+	this->play_resize->Visible = false;
+	this->input_height->Visible = false;
+	this->input_width->Visible = false;
+
+	this->input_height->Text = "Height:";
+	this->input_width->Text = "Width:";
+
+
+}
+
+void Project::easyGIMP::checkImageDentified()
+{
+	if (this->img == nullptr) {
+		MessageBox::Show("There is no image.");
+		return;
+	}
+}
+
+System::Void Project::easyGIMP::play_Canny_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	checkImageDentified();
+
+	System::String^ kernelSize = this->input_kernel_size->Text;
+	System::String^ upperThreshold = this->input_upper_threshold->Text;
+	System::String^ lowerThreshold = this->input_lower_threshold->Text;
+
+
+
+	int ks = 0;
+	int uth = 0;
+	int lth = 0;
+	try
+	{
+		ks = System::Int32::Parse(kernelSize);
+		if (ks % 2 == 0) {
+			MessageBox::Show("The size of the kernel must be the odd number.");
+		}
+
+		uth = System::Int32::Parse(upperThreshold);
+		lth = System::Int32::Parse(lowerThreshold);
+
+		this->img->undoAll();
+		this->img->detectEdges(ks, uth, lth);
+
+		displayCVImage(img);
+	}
+	catch (System::FormatException^ e)
+	{
+		MessageBox::Show("The kernel size, upper threshold and lower threshold should be integer: " + e->Message);
+	}
+
+
+	this->label_for_Canny->Visible = false;
+	this->play_Canny->Visible = false;
+	this->input_kernel_size->Visible = false;
+	this->input_lower_threshold->Visible = false;
+	this->input_upper_threshold->Visible = false;
+
+	this->input_kernel_size->Text = "Kernel size:";
+	this->input_lower_threshold->Text = "Lower threshold:";
+	this->input_upper_threshold->Text = "Upper threshold:";
 
 }
 
@@ -199,5 +321,4 @@ System::Void Project::easyGIMP::rgbButton_Click(System::Object^ sender, System::
 	displayCVImage(img);
 
 }
-
 
