@@ -6,6 +6,7 @@ MyImage::MyImage(const cv::String& path) {
 	this->originalImg = cv::imread(path);
 };
 
+
 cv::Mat MyImage::getCVMat() {
 	return this->img;
 }

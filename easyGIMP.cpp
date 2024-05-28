@@ -101,6 +101,30 @@ inline System::Void Project::easyGIMP::easyGIMP_DragDrop(System::Object^ sender,
 	this->Save->Visible = true;
 }
 
+System::Void Project::easyGIMP::openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (openImageDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		//get the file name
+		String^ pathToFile = System::IO::Path::GetDirectoryName(openImageDialog->FileName);
+
+		//get the extension
+		array<String^>^ substrings = pathToFile->Split({ '.' });
+
+		//convert pathToFile type from System::String^ to cv::String
+		msclr::interop::marshal_context context;
+		const cv::String& path = context.marshal_as<std::string>(pathToFile);
+		//if It's an image create img instance 
+		if (IsImageExtension(substrings[substrings->Length - 1])) {
+			img = new MyImage(path);
+
+			this->pictureBox->Size = img->getSize();
+			displayCVImage(img);
+		}
+
+		this->Save->Visible = true;
+	}
+}
+
 void Project::easyGIMP::resizePictureBox(MyImage* img)
 {
 	this->pictureBox->Size = img->getSize();
@@ -199,5 +223,7 @@ System::Void Project::easyGIMP::rgbButton_Click(System::Object^ sender, System::
 	displayCVImage(img);
 
 }
+
+
 
 

@@ -78,11 +78,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(OPENCV_PATH)include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\opencv\build\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opencv_world490d.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OPENCV_PATH)x64\vc16\lib\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\opencv\build\x64\vc16\lib\</AdditionalLibraryDirectories>
       <EntryPointSymbol>Main</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>

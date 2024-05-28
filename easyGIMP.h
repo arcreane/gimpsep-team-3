@@ -71,6 +71,24 @@ namespace Project {
 	private: System::Windows::Forms::Label^ greenLabel;
 	private: System::Windows::Forms::Label^ redLabel;
 	private: System::Windows::Forms::Button^ rgbButton;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^ fileToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ openToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ saveToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ saveAsToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ exitToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ toolsToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ zoomToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem2;
+	private: System::Windows::Forms::ToolStripSeparator^ toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ undoToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ undoAllToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ blurToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ turnGrayToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ detectEdgesToolStripMenuItem;
+	private: System::Windows::Forms::OpenFileDialog^ openImageDialog;
+
+	private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -95,7 +113,7 @@ namespace Project {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -126,6 +144,22 @@ namespace Project {
 			this->redLabel = (gcnew System::Windows::Forms::Label());
 			this->blueInput = (gcnew System::Windows::Forms::NumericUpDown());
 			this->greenInput = (gcnew System::Windows::Forms::NumericUpDown());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->openToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveAsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->zoomToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripSeparator());
+			this->undoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->undoAllToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->blurToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->turnGrayToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->detectEdgesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->openImageDialog = (gcnew System::Windows::Forms::OpenFileDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->contrastInput))->BeginInit();
 			this->contrastAndBrightnessBox->SuspendLayout();
@@ -134,11 +168,12 @@ namespace Project {
 			this->rgbBox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->blueInput))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->greenInput))->BeginInit();
+			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pictureBox
 			// 
-			this->pictureBox->Location = System::Drawing::Point(106, 10);
+			this->pictureBox->Location = System::Drawing::Point(106, 40);
 			this->pictureBox->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox->Name = L"pictureBox";
 			this->pictureBox->Size = System::Drawing::Size(175, 286);
@@ -149,7 +184,7 @@ namespace Project {
 			// 
 			// increase
 			// 
-			this->increase->Location = System::Drawing::Point(68, 10);
+			this->increase->Location = System::Drawing::Point(68, 40);
 			this->increase->Margin = System::Windows::Forms::Padding(2);
 			this->increase->Name = L"increase";
 			this->increase->Size = System::Drawing::Size(27, 19);
@@ -160,7 +195,7 @@ namespace Project {
 			// 
 			// decrease
 			// 
-			this->decrease->Location = System::Drawing::Point(9, 10);
+			this->decrease->Location = System::Drawing::Point(9, 40);
 			this->decrease->Margin = System::Windows::Forms::Padding(2);
 			this->decrease->Name = L"decrease";
 			this->decrease->Size = System::Drawing::Size(27, 19);
@@ -193,7 +228,7 @@ namespace Project {
 			// 
 			// Undo_all
 			// 
-			this->Undo_all->Location = System::Drawing::Point(9, 33);
+			this->Undo_all->Location = System::Drawing::Point(12, 63);
 			this->Undo_all->Margin = System::Windows::Forms::Padding(2);
 			this->Undo_all->Name = L"Undo_all";
 			this->Undo_all->Size = System::Drawing::Size(86, 22);
@@ -216,7 +251,7 @@ namespace Project {
 			// 
 			// Blur
 			// 
-			this->Blur->Location = System::Drawing::Point(12, 341);
+			this->Blur->Location = System::Drawing::Point(6, 341);
 			this->Blur->Margin = System::Windows::Forms::Padding(2);
 			this->Blur->Name = L"Blur";
 			this->Blur->Size = System::Drawing::Size(86, 23);
@@ -243,7 +278,7 @@ namespace Project {
 			this->contrastAndBrightnessBox->Controls->Add(this->brightnessLabel);
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastLabel);
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastInput);
-			this->contrastAndBrightnessBox->Location = System::Drawing::Point(9, 60);
+			this->contrastAndBrightnessBox->Location = System::Drawing::Point(9, 90);
 			this->contrastAndBrightnessBox->Name = L"contrastAndBrightnessBox";
 			this->contrastAndBrightnessBox->Size = System::Drawing::Size(92, 155);
 			this->contrastAndBrightnessBox->TabIndex = 9;
@@ -307,7 +342,7 @@ namespace Project {
 			this->rgbBox->Controls->Add(this->blueInput);
 			this->rgbBox->Controls->Add(this->greenInput);
 			this->rgbBox->Controls->Add(this->redInput);
-			this->rgbBox->Location = System::Drawing::Point(9, 221);
+			this->rgbBox->Location = System::Drawing::Point(6, 251);
 			this->rgbBox->Name = L"rgbBox";
 			this->rgbBox->Size = System::Drawing::Size(92, 85);
 			this->rgbBox->TabIndex = 11;
@@ -371,6 +406,118 @@ namespace Project {
 			this->greenInput->Size = System::Drawing::Size(34, 20);
 			this->greenInput->TabIndex = 11;
 			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->fileToolStripMenuItem,
+					this->toolsToolStripMenuItem
+			});
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(758, 24);
+			this->menuStrip1->TabIndex = 12;
+			this->menuStrip1->Text = L"menuStrip1";
+			// 
+			// fileToolStripMenuItem
+			// 
+			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+				this->openToolStripMenuItem,
+					this->saveToolStripMenuItem, this->saveAsToolStripMenuItem, this->exitToolStripMenuItem
+			});
+			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
+			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
+			this->fileToolStripMenuItem->Text = L"File";
+			// 
+			// openToolStripMenuItem
+			// 
+			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
+			this->openToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->openToolStripMenuItem->Text = L"Open";
+			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::openToolStripMenuItem_Click);
+			// 
+			// saveToolStripMenuItem
+			// 
+			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->saveToolStripMenuItem->Text = L"Save";
+			// 
+			// saveAsToolStripMenuItem
+			// 
+			this->saveAsToolStripMenuItem->Name = L"saveAsToolStripMenuItem";
+			this->saveAsToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->saveAsToolStripMenuItem->Text = L"Save As";
+			// 
+			// exitToolStripMenuItem
+			// 
+			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->exitToolStripMenuItem->Text = L"Exit";
+			// 
+			// toolsToolStripMenuItem
+			// 
+			this->toolsToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
+				this->zoomToolStripMenuItem,
+					this->undoToolStripMenuItem, this->undoAllToolStripMenuItem, this->blurToolStripMenuItem, this->turnGrayToolStripMenuItem, this->detectEdgesToolStripMenuItem
+			});
+			this->toolsToolStripMenuItem->Name = L"toolsToolStripMenuItem";
+			this->toolsToolStripMenuItem->Size = System::Drawing::Size(46, 20);
+			this->toolsToolStripMenuItem->Text = L"Tools";
+			// 
+			// zoomToolStripMenuItem
+			// 
+			this->zoomToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->toolStripMenuItem2,
+					this->toolStripMenuItem1
+			});
+			this->zoomToolStripMenuItem->Name = L"zoomToolStripMenuItem";
+			this->zoomToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->zoomToolStripMenuItem->Text = L"Zoom";
+			// 
+			// toolStripMenuItem2
+			// 
+			this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
+			this->toolStripMenuItem2->Size = System::Drawing::Size(82, 22);
+			this->toolStripMenuItem2->Text = L"+";
+			// 
+			// toolStripMenuItem1
+			// 
+			this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
+			this->toolStripMenuItem1->Size = System::Drawing::Size(79, 6);
+			// 
+			// undoToolStripMenuItem
+			// 
+			this->undoToolStripMenuItem->Name = L"undoToolStripMenuItem";
+			this->undoToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->undoToolStripMenuItem->Text = L"Undo";
+			// 
+			// undoAllToolStripMenuItem
+			// 
+			this->undoAllToolStripMenuItem->Name = L"undoAllToolStripMenuItem";
+			this->undoAllToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->undoAllToolStripMenuItem->Text = L"Undo All";
+			// 
+			// blurToolStripMenuItem
+			// 
+			this->blurToolStripMenuItem->Name = L"blurToolStripMenuItem";
+			this->blurToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->blurToolStripMenuItem->Text = L"Blur";
+			// 
+			// turnGrayToolStripMenuItem
+			// 
+			this->turnGrayToolStripMenuItem->Name = L"turnGrayToolStripMenuItem";
+			this->turnGrayToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->turnGrayToolStripMenuItem->Text = L"Turn Gray";
+			// 
+			// detectEdgesToolStripMenuItem
+			// 
+			this->detectEdgesToolStripMenuItem->Name = L"detectEdgesToolStripMenuItem";
+			this->detectEdgesToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->detectEdgesToolStripMenuItem->Text = L"Detect Edges";
+			// 
+			// openImageDialog
+			// 
+			this->openImageDialog->FileName = L"openFileDialog1";
+			// 
 			// easyGIMP
 			// 
 			this->AllowDrop = true;
@@ -387,6 +534,8 @@ namespace Project {
 			this->Controls->Add(this->decrease);
 			this->Controls->Add(this->increase);
 			this->Controls->Add(this->pictureBox);
+			this->Controls->Add(this->menuStrip1);
+			this->MainMenuStrip = this->menuStrip1;
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"easyGIMP";
 			this->Text = L"easyGIMP";
@@ -403,7 +552,10 @@ namespace Project {
 			this->rgbBox->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->blueInput))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->greenInput))->EndInit();
+			this->menuStrip1->ResumeLayout(false);
+			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -434,5 +586,8 @@ namespace Project {
 		System::Void contrastAndBrightnessButton_Click(System::Object^ sender, System::EventArgs^ e);
 
 		System::Void rgbButton_Click(System::Object^ sender, System::EventArgs^ e);
-};
+		
+		System::Void openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		 
+	};
 }
