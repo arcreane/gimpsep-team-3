@@ -97,7 +97,8 @@ namespace Project {
 
 
 
-
+	private: System::Windows::Forms::Label^ lable_for_resize;
+	private: System::Windows::Forms::Button^ resize;
 	private: System::Windows::Forms::Label^ label_for_Canny;
 	private: System::Windows::Forms::TextBox^ input_upper_threshold;
 	private: System::Windows::Forms::TextBox^ input_lower_threshold;
