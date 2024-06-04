@@ -14,7 +14,7 @@ inline System::Void Project::easyGIMP::easyGIMP_Enter(System::Object^ sender, Sy
 bool IsImageExtension(System::String^ extension) {
 	// Define an array of image file extensions
 	array<System::String^>^ imageExtensions = {
-		"jpg", "jpeg", "png", "gif", "bmp", "tiff"
+		"jpg", "jpeg", "png", "bmp", "tiff"
 	};
 
 	// Convert the input extension to lowercase to make the comparison case-insensitive
@@ -96,105 +96,44 @@ inline System::Void Project::easyGIMP::easyGIMP_DragDrop(System::Object^ sender,
 
 		this->pictureBox->Size = img->getSize();
 		displayCVImage(img);
+
+		this->saveAsToolStripMenuItem->Enabled = true;
+		this->saveToolStripMenuItem->Enabled = true;
 	}
 
-	this->Save->Visible = true;
+	
+}
+
+System::Void Project::easyGIMP::openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (openImageDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		//get the file name
+		String^ pathToFile = openImageDialog->FileName;
+		
+		//get the extension
+		array<String^>^ substrings = pathToFile->Split({ '.' });
+
+		//convert pathToFile type from System::String^ to cv::String
+		msclr::interop::marshal_context context;
+		const cv::String& path = context.marshal_as<std::string>(pathToFile);
+
+		//if It's an image create img instance 
+		if (IsImageExtension(substrings[substrings->Length - 1])) {
+			img = new MyImage(path);
+
+			this->pictureBox->Size = img->getSize();
+			displayCVImage(img);
+
+			this->saveAsToolStripMenuItem->Enabled = true;
+			this->saveToolStripMenuItem->Enabled = true;
+		}
+
+	}
 }
 
 void Project::easyGIMP::resizePictureBox(MyImage* img)
 {
 	this->pictureBox->Size = img->getSize();
-}
-
-inline System::Void Project::easyGIMP::scaleUp(System::Object^ sender, System::EventArgs^ e) {
-	this->img->scaleUp();
-	resizePictureBox(img);
-	displayCVImage(img);
-}
-
-inline System::Void Project::easyGIMP::scaleDown(System::Object^ sender, System::EventArgs^ e) {
-	this->img->scaleDown();
-	resizePictureBox(img);
-	displayCVImage(img);
-}
-
-System::Void Project::easyGIMP::Detect_edges_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	this->label_for_Canny->Visible = true;
-	this->play_Canny->Visible = true;
-	this->input_kernel_size->Visible = true;
-	this->input_lower_threshold->Visible = true;
-	this->input_upper_threshold->Visible = true;
-
-	this->lable_for_resize->Visible = false;
-	this->play_resize->Visible = false;
-	this->input_height->Visible = false;
-	this->input_width->Visible = false;
-
-}
-
-System::Void Project::easyGIMP::Turn_gray_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	this->img->undoAll();
-	this->img->turngGray();
-	displayCVImage(img);
-}
-
-System::Void Project::easyGIMP::Undo_all_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	this->img->undoAll();
-	displayCVImage(img);
-}
-
-System::Void Project::easyGIMP::Save_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	try {
-		std::string path;
-		FolderBrowserDialog^ folderBrowserDialog = gcnew FolderBrowserDialog();
-		if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-			System::String^ folderPath = folderBrowserDialog->SelectedPath;
-
-			SaveFileDialog^ saveFileDialog = gcnew SaveFileDialog();
-			saveFileDialog->InitialDirectory = folderPath;
-			saveFileDialog->Filter = "All files (*.*)|*.*";
-			saveFileDialog->Title = "Specify File Name";
-
-			if (saveFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-				System::String^ filePath = saveFileDialog->FileName;
-				// Convert System::String^ to std::string
-				path = msclr::interop::marshal_as<std::string>(filePath);
-				MessageBox::Show(gcnew System::String(path.c_str()), "Selected File Path");
-			}
-		}
-		this->img->save(path);
-		MessageBox::Show(gcnew System::String(path.c_str()), "File Saved", MessageBoxButtons::OK, MessageBoxIcon::Information);
-
-	}
-	catch (const std::exception& e) {
-		return;
-	}
-	
-}
-
-System::Void Project::easyGIMP::Blur_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	this->img->blur(3);
-	displayCVImage(img);
-
-}
-
-System::Void Project::easyGIMP::resize_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	this->lable_for_resize->Visible = true;
-	this->play_resize->Visible = true;
-	this->input_height->Visible = true;
-	this->input_width->Visible = true;
-
-	this->label_for_Canny->Visible = false;
-	this->play_Canny->Visible = false;
-	this->input_kernel_size->Visible = false;
-	this->input_lower_threshold->Visible = false;
-	this->input_upper_threshold->Visible = false;
 }
 
 System::Void Project::easyGIMP::input_OnFocus(System::Object^ sender, System::EventArgs^ e)
@@ -231,10 +170,7 @@ System::Void Project::easyGIMP::play_Click(System::Object^ sender, System::Event
 		MessageBox::Show("The height and width should be rational numbers: " + e->Message);
 	}
 
-	this->lable_for_resize->Visible = false;
-	this->play_resize->Visible = false;
-	this->input_height->Visible = false;
-	this->input_width->Visible = false;
+	this->resizeBox->Visible = false;
 
 	this->input_height->Text = "Height:";
 	this->input_width->Text = "Width:";
@@ -248,6 +184,13 @@ void Project::easyGIMP::checkImageDentified()
 		MessageBox::Show("There is no image.");
 		return;
 	}
+}
+
+void Project::easyGIMP::hideAllToolsMenu() {
+	this->edegeDetectionBox->Visible = false;
+	this->resizeBox->Visible = false;
+	this->rgbBox->Visible = false;
+	this->contrastAndBrightnessBox->Visible = false;
 }
 
 System::Void Project::easyGIMP::play_Canny_Click(System::Object^ sender, System::EventArgs^ e)
@@ -284,11 +227,7 @@ System::Void Project::easyGIMP::play_Canny_Click(System::Object^ sender, System:
 	}
 
 
-	this->label_for_Canny->Visible = false;
-	this->play_Canny->Visible = false;
-	this->input_kernel_size->Visible = false;
-	this->input_lower_threshold->Visible = false;
-	this->input_upper_threshold->Visible = false;
+	this->edegeDetectionBox->Visible = false;
 
 	this->input_kernel_size->Text = "Kernel size:";
 	this->input_lower_threshold->Text = "Lower threshold:";
@@ -297,17 +236,20 @@ System::Void Project::easyGIMP::play_Canny_Click(System::Object^ sender, System:
 }
 
 System::Void Project::easyGIMP::contrastAndBrightnessButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
 	System::Decimal decimalBeta = brightnessInput->Value;
 	double betaDouble = decimalBeta.ToDouble(decimalBeta);
 
 	System::Decimal decimalAlpha = contrastInput->Value;
 	double alphaDouble = decimalAlpha.ToDouble(decimalAlpha);
+	this->contrastAndBrightnessBox->Visible = false;
 
 	img->brightnessAndContrastControl(alphaDouble, betaDouble);
 	displayCVImage(img);
 }
 
 System::Void Project::easyGIMP::rgbButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
 	System::Decimal decimalR = redInput->Value;
 	double rDouble = decimalR.ToDouble(decimalR);
 
@@ -317,8 +259,88 @@ System::Void Project::easyGIMP::rgbButton_Click(System::Object^ sender, System::
 	System::Decimal decimalB = blueInput->Value;
 	double bDouble = decimalB.ToDouble(decimalB);
 
+	this->rgbBox->Visible = false;
+
 	img->rgbControl(rDouble, gDouble, bDouble);
 	displayCVImage(img);
 
+}
+
+
+System::Void Project::easyGIMP::saveAsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
+	try {
+		std::string path;
+		FolderBrowserDialog^ folderBrowserDialog = gcnew FolderBrowserDialog();
+		if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			System::String^ folderPath = folderBrowserDialog->SelectedPath;
+
+			SaveFileDialog^ saveFileDialog = gcnew SaveFileDialog();
+			saveFileDialog->InitialDirectory = folderPath;
+			saveFileDialog->Filter = "All files (*.*)|*.*";
+			saveFileDialog->Title = "Specify File Name";
+
+			if (saveFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				System::String^ filePath = saveFileDialog->FileName;
+				// Convert System::String^ to std::string
+				path = msclr::interop::marshal_as<std::string>(filePath);
+				MessageBox::Show(gcnew System::String(path.c_str()), "Selected File Path");
+			}
+		}
+		this->img->save(path);
+		MessageBox::Show(gcnew System::String(path.c_str()), "File Saved", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+	}
+	catch (const std::exception& e) {
+		return;
+	}
+}
+
+System::Void Project::easyGIMP::zoomPlusToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
+	this->img->scaleUp();
+	resizePictureBox(img);
+	displayCVImage(img);
+}
+
+System::Void Project::easyGIMP::zoomMinusToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
+	this->img->scaleDown();
+	resizePictureBox(img);
+	displayCVImage(img);
+}
+
+System::Void Project::easyGIMP::undoAllToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
+	this->img->undoAll();
+	displayCVImage(img);
+}
+System::Void Project::easyGIMP::blurToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
+	this->img->blur(3);
+	displayCVImage(img);
+}
+System::Void Project::easyGIMP::turnGrayToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
+	this->img->turngGray();
+	displayCVImage(img);
+}
+System::Void Project::easyGIMP::detectEdgesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	hideAllToolsMenu();
+	this->edegeDetectionBox->Visible = true;
+}
+System::Void Project::easyGIMP::resizeToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	hideAllToolsMenu();
+	this->resizeBox->Visible = true;
+}
+
+System::Void Project::easyGIMP::rGBToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	hideAllToolsMenu();
+	this->rgbBox->Visible = true;
+}
+
+System::Void Project::easyGIMP::contrastBrightnessToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	hideAllToolsMenu();
+	this->contrastAndBrightnessBox->Visible = true;
 }
 
