@@ -30,17 +30,17 @@ void MyImage::turngGray()
 
 }
 
-void MyImage::blur()
+void MyImage::blur(int kernelSize)
 {
-	cv::blur(this->img, this->img, cv::Size(5, 5));
+	cv::blur(this->img, this->img, cv::Size(kernelSize, kernelSize));
 
 }
 
-void MyImage::detectEdges()
+void MyImage::detectEdges(int kernelSize, int upperThreshold, int lowerThreshold)
 {
 	MyImage::turngGray();
-	MyImage::blur();
-	cv::Canny(this->img, this->img, 100, 200);
+	MyImage::blur(kernelSize);
+	cv::Canny(this->img, this->img, lowerThreshold, upperThreshold);
 
 }
 
