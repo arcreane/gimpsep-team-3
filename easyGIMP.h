@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <vcclr.h>
 #include <msclr/marshal_cppstd.h>
@@ -47,18 +47,21 @@ namespace Project {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox;
-	private: System::Windows::Forms::Button^ increase;
-	private: System::Windows::Forms::Button^ decrease;
-	private: System::Windows::Forms::Button^ Detect_edges;
-	private: System::Windows::Forms::Button^ Turn_gray;
-	private: System::Windows::Forms::Button^ Undo_all;
-	private: System::Windows::Forms::Button^ Save;
-	private: System::Windows::Forms::Button^ Blur;
+
+
+
+
+
+
+
 	private: System::Windows::Forms::NumericUpDown^ contrastInput;
 	private: System::Windows::Forms::GroupBox^ contrastAndBrightnessBox;
 	private: System::Windows::Forms::Label^ brightnessLabel;
 	private: System::Windows::Forms::Label^ contrastLabel;
 	private: System::Windows::Forms::Button^ contrastAndBrightnessButton;
+	private: System::Windows::Forms::TextBox^ input_height;
+	private: System::Windows::Forms::TextBox^ input_width;
+	private: System::Windows::Forms::Button^ play_resize;
 
 	private: System::Windows::Forms::NumericUpDown^ brightnessInput;
 	private: System::Windows::Forms::NumericUpDown^ redInput;
@@ -79,8 +82,10 @@ namespace Project {
 	private: System::Windows::Forms::ToolStripMenuItem^ exitToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ toolsToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ zoomToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem2;
-	private: System::Windows::Forms::ToolStripSeparator^ toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ zoomPlusToolStripMenuItem2;
+
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^ undoToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ undoAllToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ blurToolStripMenuItem;
@@ -91,6 +96,22 @@ namespace Project {
 	private: System::ComponentModel::IContainer^ components;
 
 
+
+
+	private: System::Windows::Forms::Label^ label_for_Canny;
+	private: System::Windows::Forms::TextBox^ input_upper_threshold;
+	private: System::Windows::Forms::TextBox^ input_lower_threshold;
+	private: System::Windows::Forms::TextBox^ input_kernel_size;
+	private: System::Windows::Forms::ToolStripMenuItem^ resizeToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ zoomMinusToolStripMenuItem1;
+	private: System::Windows::Forms::GroupBox^ edegeDetectionBox;
+	private: System::Windows::Forms::GroupBox^ resizeBox;
+	private: System::Windows::Forms::ToolStripMenuItem^ rGBToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ contrastBrightnessToolStripMenuItem;
+
+
+
+	private: System::Windows::Forms::Button^ play_Canny;
 
 
 
@@ -123,13 +144,6 @@ namespace Project {
 		void InitializeComponent(void)
 		{
 			this->pictureBox = (gcnew System::Windows::Forms::PictureBox());
-			this->increase = (gcnew System::Windows::Forms::Button());
-			this->decrease = (gcnew System::Windows::Forms::Button());
-			this->Detect_edges = (gcnew System::Windows::Forms::Button());
-			this->Turn_gray = (gcnew System::Windows::Forms::Button());
-			this->Undo_all = (gcnew System::Windows::Forms::Button());
-			this->Save = (gcnew System::Windows::Forms::Button());
-			this->Blur = (gcnew System::Windows::Forms::Button());
 			this->contrastInput = (gcnew System::Windows::Forms::NumericUpDown());
 			this->contrastAndBrightnessBox = (gcnew System::Windows::Forms::GroupBox());
 			this->contrastAndBrightnessButton = (gcnew System::Windows::Forms::Button());
@@ -152,14 +166,27 @@ namespace Project {
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->zoomToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripSeparator());
+			this->zoomPlusToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->zoomMinusToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->undoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->undoAllToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->blurToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->turnGrayToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->detectEdgesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->resizeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->rGBToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->contrastBrightnessToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->openImageDialog = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->input_height = (gcnew System::Windows::Forms::TextBox());
+			this->input_width = (gcnew System::Windows::Forms::TextBox());
+			this->play_resize = (gcnew System::Windows::Forms::Button());
+			this->label_for_Canny = (gcnew System::Windows::Forms::Label());
+			this->input_upper_threshold = (gcnew System::Windows::Forms::TextBox());
+			this->input_lower_threshold = (gcnew System::Windows::Forms::TextBox());
+			this->input_kernel_size = (gcnew System::Windows::Forms::TextBox());
+			this->play_Canny = (gcnew System::Windows::Forms::Button());
+			this->edegeDetectionBox = (gcnew System::Windows::Forms::GroupBox());
+			this->resizeBox = (gcnew System::Windows::Forms::GroupBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->contrastInput))->BeginInit();
 			this->contrastAndBrightnessBox->SuspendLayout();
@@ -169,11 +196,13 @@ namespace Project {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->blueInput))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->greenInput))->BeginInit();
 			this->menuStrip1->SuspendLayout();
+			this->edegeDetectionBox->SuspendLayout();
+			this->resizeBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pictureBox
 			// 
-			this->pictureBox->Location = System::Drawing::Point(106, 40);
+			this->pictureBox->Location = System::Drawing::Point(151, 62);
 			this->pictureBox->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox->Name = L"pictureBox";
 			this->pictureBox->Size = System::Drawing::Size(175, 286);
@@ -181,84 +210,6 @@ namespace Project {
 			this->pictureBox->TabStop = false;
 			this->pictureBox->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &easyGIMP::easyGIMP_DragDrop);
 			this->pictureBox->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &easyGIMP::easyGIMP_Enter);
-			// 
-			// increase
-			// 
-			this->increase->Location = System::Drawing::Point(68, 40);
-			this->increase->Margin = System::Windows::Forms::Padding(2);
-			this->increase->Name = L"increase";
-			this->increase->Size = System::Drawing::Size(27, 19);
-			this->increase->TabIndex = 1;
-			this->increase->Text = L"+";
-			this->increase->UseVisualStyleBackColor = true;
-			this->increase->Click += gcnew System::EventHandler(this, &easyGIMP::scaleUp);
-			// 
-			// decrease
-			// 
-			this->decrease->Location = System::Drawing::Point(9, 40);
-			this->decrease->Margin = System::Windows::Forms::Padding(2);
-			this->decrease->Name = L"decrease";
-			this->decrease->Size = System::Drawing::Size(27, 19);
-			this->decrease->TabIndex = 2;
-			this->decrease->Text = L"-";
-			this->decrease->UseVisualStyleBackColor = true;
-			this->decrease->Click += gcnew System::EventHandler(this, &easyGIMP::scaleDown);
-			// 
-			// Detect_edges
-			// 
-			this->Detect_edges->Location = System::Drawing::Point(9, 395);
-			this->Detect_edges->Margin = System::Windows::Forms::Padding(2);
-			this->Detect_edges->Name = L"Detect_edges";
-			this->Detect_edges->Size = System::Drawing::Size(86, 23);
-			this->Detect_edges->TabIndex = 3;
-			this->Detect_edges->Text = L"Detect edges";
-			this->Detect_edges->UseVisualStyleBackColor = true;
-			this->Detect_edges->Click += gcnew System::EventHandler(this, &easyGIMP::Detect_edges_Click);
-			// 
-			// Turn_gray
-			// 
-			this->Turn_gray->Location = System::Drawing::Point(9, 368);
-			this->Turn_gray->Margin = System::Windows::Forms::Padding(2);
-			this->Turn_gray->Name = L"Turn_gray";
-			this->Turn_gray->Size = System::Drawing::Size(86, 23);
-			this->Turn_gray->TabIndex = 4;
-			this->Turn_gray->Text = L"Turn gray";
-			this->Turn_gray->UseVisualStyleBackColor = true;
-			this->Turn_gray->Click += gcnew System::EventHandler(this, &easyGIMP::Turn_gray_Click);
-			// 
-			// Undo_all
-			// 
-			this->Undo_all->Location = System::Drawing::Point(12, 63);
-			this->Undo_all->Margin = System::Windows::Forms::Padding(2);
-			this->Undo_all->Name = L"Undo_all";
-			this->Undo_all->Size = System::Drawing::Size(86, 22);
-			this->Undo_all->TabIndex = 5;
-			this->Undo_all->Text = L"Undo All";
-			this->Undo_all->UseVisualStyleBackColor = true;
-			this->Undo_all->Click += gcnew System::EventHandler(this, &easyGIMP::Undo_all_Click);
-			// 
-			// Save
-			// 
-			this->Save->Location = System::Drawing::Point(11, 422);
-			this->Save->Margin = System::Windows::Forms::Padding(2);
-			this->Save->Name = L"Save";
-			this->Save->Size = System::Drawing::Size(86, 36);
-			this->Save->TabIndex = 6;
-			this->Save->Text = L"Save";
-			this->Save->UseVisualStyleBackColor = true;
-			this->Save->Visible = false;
-			this->Save->Click += gcnew System::EventHandler(this, &easyGIMP::Save_Click);
-			// 
-			// Blur
-			// 
-			this->Blur->Location = System::Drawing::Point(6, 341);
-			this->Blur->Margin = System::Windows::Forms::Padding(2);
-			this->Blur->Name = L"Blur";
-			this->Blur->Size = System::Drawing::Size(86, 23);
-			this->Blur->TabIndex = 7;
-			this->Blur->Text = L"Blur";
-			this->Blur->UseVisualStyleBackColor = true;
-			this->Blur->Click += gcnew System::EventHandler(this, &easyGIMP::Blur_Click);
 			// 
 			// contrastInput
 			// 
@@ -278,12 +229,13 @@ namespace Project {
 			this->contrastAndBrightnessBox->Controls->Add(this->brightnessLabel);
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastLabel);
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastInput);
-			this->contrastAndBrightnessBox->Location = System::Drawing::Point(9, 90);
+			this->contrastAndBrightnessBox->Location = System::Drawing::Point(2, 40);
 			this->contrastAndBrightnessBox->Name = L"contrastAndBrightnessBox";
 			this->contrastAndBrightnessBox->Size = System::Drawing::Size(92, 155);
 			this->contrastAndBrightnessBox->TabIndex = 9;
 			this->contrastAndBrightnessBox->TabStop = false;
 			this->contrastAndBrightnessBox->Text = L"Contrast and Brightness";
+			this->contrastAndBrightnessBox->Visible = false;
 			// 
 			// contrastAndBrightnessButton
 			// 
@@ -342,12 +294,13 @@ namespace Project {
 			this->rgbBox->Controls->Add(this->blueInput);
 			this->rgbBox->Controls->Add(this->greenInput);
 			this->rgbBox->Controls->Add(this->redInput);
-			this->rgbBox->Location = System::Drawing::Point(6, 251);
+			this->rgbBox->Location = System::Drawing::Point(2, 40);
 			this->rgbBox->Name = L"rgbBox";
 			this->rgbBox->Size = System::Drawing::Size(92, 85);
 			this->rgbBox->TabIndex = 11;
 			this->rgbBox->TabStop = false;
 			this->rgbBox->Text = L"RGB";
+			this->rgbBox->Visible = false;
 			// 
 			// rgbButton
 			// 
@@ -414,7 +367,8 @@ namespace Project {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(758, 24);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 2, 0, 2);
+			this->menuStrip1->Size = System::Drawing::Size(1010, 24);
 			this->menuStrip1->TabIndex = 12;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -431,33 +385,37 @@ namespace Project {
 			// openToolStripMenuItem
 			// 
 			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
-			this->openToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->openToolStripMenuItem->Size = System::Drawing::Size(114, 22);
 			this->openToolStripMenuItem->Text = L"Open";
 			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::openToolStripMenuItem_Click);
 			// 
 			// saveToolStripMenuItem
 			// 
+			this->saveToolStripMenuItem->Enabled = false;
 			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
-			this->saveToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(114, 22);
 			this->saveToolStripMenuItem->Text = L"Save";
 			// 
 			// saveAsToolStripMenuItem
 			// 
+			this->saveAsToolStripMenuItem->Enabled = false;
 			this->saveAsToolStripMenuItem->Name = L"saveAsToolStripMenuItem";
-			this->saveAsToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->saveAsToolStripMenuItem->Size = System::Drawing::Size(114, 22);
 			this->saveAsToolStripMenuItem->Text = L"Save As";
+			this->saveAsToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::saveAsToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(114, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			// 
 			// toolsToolStripMenuItem
 			// 
-			this->toolsToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
+			this->toolsToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(9) {
 				this->zoomToolStripMenuItem,
-					this->undoToolStripMenuItem, this->undoAllToolStripMenuItem, this->blurToolStripMenuItem, this->turnGrayToolStripMenuItem, this->detectEdgesToolStripMenuItem
+					this->undoToolStripMenuItem, this->undoAllToolStripMenuItem, this->blurToolStripMenuItem, this->turnGrayToolStripMenuItem, this->detectEdgesToolStripMenuItem,
+					this->resizeToolStripMenuItem, this->rGBToolStripMenuItem, this->contrastBrightnessToolStripMenuItem
 			});
 			this->toolsToolStripMenuItem->Name = L"toolsToolStripMenuItem";
 			this->toolsToolStripMenuItem->Size = System::Drawing::Size(46, 20);
@@ -466,73 +424,204 @@ namespace Project {
 			// zoomToolStripMenuItem
 			// 
 			this->zoomToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->toolStripMenuItem2,
-					this->toolStripMenuItem1
+				this->zoomPlusToolStripMenuItem2,
+					this->zoomMinusToolStripMenuItem1
 			});
 			this->zoomToolStripMenuItem->Name = L"zoomToolStripMenuItem";
-			this->zoomToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->zoomToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->zoomToolStripMenuItem->Text = L"Zoom";
 			// 
-			// toolStripMenuItem2
+			// zoomPlusToolStripMenuItem2
 			// 
-			this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
-			this->toolStripMenuItem2->Size = System::Drawing::Size(82, 22);
-			this->toolStripMenuItem2->Text = L"+";
+			this->zoomPlusToolStripMenuItem2->Name = L"zoomPlusToolStripMenuItem2";
+			this->zoomPlusToolStripMenuItem2->Size = System::Drawing::Size(117, 22);
+			this->zoomPlusToolStripMenuItem2->Text = L"Zoom +";
+			this->zoomPlusToolStripMenuItem2->Click += gcnew System::EventHandler(this, &easyGIMP::zoomPlusToolStripMenuItem2_Click);
 			// 
-			// toolStripMenuItem1
+			// zoomMinusToolStripMenuItem1
 			// 
-			this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
-			this->toolStripMenuItem1->Size = System::Drawing::Size(79, 6);
+			this->zoomMinusToolStripMenuItem1->Name = L"zoomMinusToolStripMenuItem1";
+			this->zoomMinusToolStripMenuItem1->Size = System::Drawing::Size(117, 22);
+			this->zoomMinusToolStripMenuItem1->Text = L"Zoom -";
+			this->zoomMinusToolStripMenuItem1->Click += gcnew System::EventHandler(this, &easyGIMP::zoomMinusToolStripMenuItem1_Click);
 			// 
 			// undoToolStripMenuItem
 			// 
 			this->undoToolStripMenuItem->Name = L"undoToolStripMenuItem";
-			this->undoToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->undoToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->undoToolStripMenuItem->Text = L"Undo";
 			// 
 			// undoAllToolStripMenuItem
 			// 
 			this->undoAllToolStripMenuItem->Name = L"undoAllToolStripMenuItem";
-			this->undoAllToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->undoAllToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->undoAllToolStripMenuItem->Text = L"Undo All";
+			this->undoAllToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::undoAllToolStripMenuItem_Click);
 			// 
 			// blurToolStripMenuItem
 			// 
 			this->blurToolStripMenuItem->Name = L"blurToolStripMenuItem";
-			this->blurToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->blurToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->blurToolStripMenuItem->Text = L"Blur";
+			this->blurToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::blurToolStripMenuItem_Click);
 			// 
 			// turnGrayToolStripMenuItem
 			// 
 			this->turnGrayToolStripMenuItem->Name = L"turnGrayToolStripMenuItem";
-			this->turnGrayToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->turnGrayToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->turnGrayToolStripMenuItem->Text = L"Turn Gray";
+			this->turnGrayToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::turnGrayToolStripMenuItem_Click);
 			// 
 			// detectEdgesToolStripMenuItem
 			// 
 			this->detectEdgesToolStripMenuItem->Name = L"detectEdgesToolStripMenuItem";
-			this->detectEdgesToolStripMenuItem->Size = System::Drawing::Size(142, 22);
+			this->detectEdgesToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->detectEdgesToolStripMenuItem->Text = L"Detect Edges";
+			this->detectEdgesToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::detectEdgesToolStripMenuItem_Click);
+			// 
+			// resizeToolStripMenuItem
+			// 
+			this->resizeToolStripMenuItem->Name = L"resizeToolStripMenuItem";
+			this->resizeToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->resizeToolStripMenuItem->Text = L"Resize";
+			this->resizeToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::resizeToolStripMenuItem_Click);
+			// 
+			// rGBToolStripMenuItem
+			// 
+			this->rGBToolStripMenuItem->Name = L"rGBToolStripMenuItem";
+			this->rGBToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->rGBToolStripMenuItem->Text = L"RGB";
+			this->rGBToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::rGBToolStripMenuItem_Click);
+			// 
+			// contrastBrightnessToolStripMenuItem
+			// 
+			this->contrastBrightnessToolStripMenuItem->Name = L"contrastBrightnessToolStripMenuItem";
+			this->contrastBrightnessToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->contrastBrightnessToolStripMenuItem->Text = L"Contrast/Brightness";
+			this->contrastBrightnessToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::contrastBrightnessToolStripMenuItem_Click);
 			// 
 			// openImageDialog
 			// 
 			this->openImageDialog->FileName = L"openFileDialog1";
+			// 
+			// input_height
+			// 
+			this->input_height->Location = System::Drawing::Point(6, 20);
+			this->input_height->Name = L"input_height";
+			this->input_height->Size = System::Drawing::Size(81, 20);
+			this->input_height->TabIndex = 8;
+			this->input_height->Text = L"Height:";
+			this->input_height->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// input_width
+			// 
+			this->input_width->Location = System::Drawing::Point(6, 46);
+			this->input_width->Name = L"input_width";
+			this->input_width->Size = System::Drawing::Size(81, 20);
+			this->input_width->TabIndex = 9;
+			this->input_width->Text = L"Width:";
+			this->input_width->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// play_resize
+			// 
+			this->play_resize->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->play_resize->Location = System::Drawing::Point(6, 69);
+			this->play_resize->Name = L"play_resize";
+			this->play_resize->Size = System::Drawing::Size(81, 31);
+			this->play_resize->TabIndex = 10;
+			this->play_resize->Text = L"⏵";
+			this->play_resize->UseVisualStyleBackColor = true;
+			this->play_resize->Click += gcnew System::EventHandler(this, &easyGIMP::play_Click);
+			// 
+			// label_for_Canny
+			// 
+			this->label_for_Canny->AutoSize = true;
+			this->label_for_Canny->Location = System::Drawing::Point(6, 18);
+			this->label_for_Canny->Name = L"label_for_Canny";
+			this->label_for_Canny->Size = System::Drawing::Size(129, 52);
+			this->label_for_Canny->TabIndex = 16;
+			this->label_for_Canny->Text = L"Enter the two thresholds\r\nand the kernel size for \r\nthe Canny edge detection\r\nand"
+				L" click play";
+			// 
+			// input_upper_threshold
+			// 
+			this->input_upper_threshold->Location = System::Drawing::Point(9, 112);
+			this->input_upper_threshold->Name = L"input_upper_threshold";
+			this->input_upper_threshold->Size = System::Drawing::Size(113, 20);
+			this->input_upper_threshold->TabIndex = 14;
+			this->input_upper_threshold->Text = L"Upper threshold:";
+			this->input_upper_threshold->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// input_lower_threshold
+			// 
+			this->input_lower_threshold->Location = System::Drawing::Point(9, 80);
+			this->input_lower_threshold->Name = L"input_lower_threshold";
+			this->input_lower_threshold->Size = System::Drawing::Size(113, 20);
+			this->input_lower_threshold->TabIndex = 13;
+			this->input_lower_threshold->Text = L"Lower threshold:";
+			this->input_lower_threshold->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// input_kernel_size
+			// 
+			this->input_kernel_size->Location = System::Drawing::Point(9, 138);
+			this->input_kernel_size->Name = L"input_kernel_size";
+			this->input_kernel_size->Size = System::Drawing::Size(113, 20);
+			this->input_kernel_size->TabIndex = 17;
+			this->input_kernel_size->Text = L"Kernel size:";
+			this->input_kernel_size->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// play_Canny
+			// 
+			this->play_Canny->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->play_Canny->Location = System::Drawing::Point(9, 164);
+			this->play_Canny->Name = L"play_Canny";
+			this->play_Canny->Size = System::Drawing::Size(113, 31);
+			this->play_Canny->TabIndex = 18;
+			this->play_Canny->Text = L"⏵";
+			this->play_Canny->UseVisualStyleBackColor = true;
+			this->play_Canny->Click += gcnew System::EventHandler(this, &easyGIMP::play_Canny_Click);
+			// 
+			// edegeDetectionBox
+			// 
+			this->edegeDetectionBox->Controls->Add(this->label_for_Canny);
+			this->edegeDetectionBox->Controls->Add(this->input_lower_threshold);
+			this->edegeDetectionBox->Controls->Add(this->input_upper_threshold);
+			this->edegeDetectionBox->Controls->Add(this->play_Canny);
+			this->edegeDetectionBox->Controls->Add(this->input_kernel_size);
+			this->edegeDetectionBox->Location = System::Drawing::Point(2, 40);
+			this->edegeDetectionBox->Name = L"edegeDetectionBox";
+			this->edegeDetectionBox->Size = System::Drawing::Size(140, 216);
+			this->edegeDetectionBox->TabIndex = 19;
+			this->edegeDetectionBox->TabStop = false;
+			this->edegeDetectionBox->Text = L"Edge Detection";
+			this->edegeDetectionBox->Visible = false;
+			// 
+			// resizeBox
+			// 
+			this->resizeBox->Controls->Add(this->input_height);
+			this->resizeBox->Controls->Add(this->input_width);
+			this->resizeBox->Controls->Add(this->play_resize);
+			this->resizeBox->Location = System::Drawing::Point(2, 40);
+			this->resizeBox->Name = L"resizeBox";
+			this->resizeBox->Size = System::Drawing::Size(99, 116);
+			this->resizeBox->TabIndex = 20;
+			this->resizeBox->TabStop = false;
+			this->resizeBox->Text = L"Resize";
+			this->resizeBox->Visible = false;
 			// 
 			// easyGIMP
 			// 
 			this->AllowDrop = true;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(758, 567);
+			this->AutoScroll = true;
+			this->ClientSize = System::Drawing::Size(1010, 698);
+			this->Controls->Add(this->resizeBox);
+			this->Controls->Add(this->edegeDetectionBox);
 			this->Controls->Add(this->rgbBox);
 			this->Controls->Add(this->contrastAndBrightnessBox);
-			this->Controls->Add(this->Blur);
-			this->Controls->Add(this->Save);
-			this->Controls->Add(this->Undo_all);
-			this->Controls->Add(this->Turn_gray);
-			this->Controls->Add(this->Detect_edges);
-			this->Controls->Add(this->decrease);
-			this->Controls->Add(this->increase);
 			this->Controls->Add(this->pictureBox);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
@@ -554,6 +643,10 @@ namespace Project {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->greenInput))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
+			this->edegeDetectionBox->ResumeLayout(false);
+			this->edegeDetectionBox->PerformLayout();
+			this->resizeBox->ResumeLayout(false);
+			this->resizeBox->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -568,20 +661,15 @@ namespace Project {
 		void displayCVImage(MyImage* img);
 		System::Void easyGIMP_DragDrop(System::Object^ sender, System::Windows::Forms::DragEventArgs^ e);
 
-		System::Void scaleUp(System::Object^ sender, System::EventArgs^ e);
-
 		void resizePictureBox(MyImage* img);
-		System::Void scaleDown(System::Object^ sender, System::EventArgs^ e);
 
-		System::Void Detect_edges_Click(System::Object^ sender, System::EventArgs^ e);
-		
-		System::Void Turn_gray_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void input_OnFocus(System::Object^ sender, System::EventArgs^ e);
 
-		System::Void Undo_all_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void play_Click(System::Object^ sender, System::EventArgs^ e);
 
-		System::Void Save_Click(System::Object^ sender, System::EventArgs^ e);
-		
-		System::Void Blur_Click(System::Object^ sender, System::EventArgs^ e);
+		void checkImageDentified();
+		System::Void play_Canny_Click(System::Object^ sender, System::EventArgs^ e);
+
 
 		System::Void contrastAndBrightnessButton_Click(System::Object^ sender, System::EventArgs^ e);
 
@@ -589,5 +677,16 @@ namespace Project {
 		
 		System::Void openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 		 
-	};
+		System::Void saveAsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void zoomPlusToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void zoomMinusToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void undoAllToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void blurToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void turnGrayToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void detectEdgesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void resizeToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		void hideAllToolsMenu();
+		System::Void rGBToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void contrastBrightnessToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+};
 }
