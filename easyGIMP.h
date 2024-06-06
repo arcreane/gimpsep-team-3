@@ -451,6 +451,7 @@ namespace Project {
 			this->undoToolStripMenuItem->Name = L"undoToolStripMenuItem";
 			this->undoToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->undoToolStripMenuItem->Text = L"Undo";
+			this->undoToolStripMenuItem->Click += gcnew System::EventHandler(this, &easyGIMP::undoToolStripMenuItem_Click);
 			// 
 			// undoAllToolStripMenuItem
 			// 
@@ -689,5 +690,6 @@ namespace Project {
 		void hideAllToolsMenu();
 		System::Void rGBToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void contrastBrightnessToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void undoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

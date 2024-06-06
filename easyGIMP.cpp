@@ -315,6 +315,13 @@ System::Void Project::easyGIMP::undoAllToolStripMenuItem_Click(System::Object^ s
 	this->img->undoAll();
 	displayCVImage(img);
 }
+
+System::Void Project::easyGIMP::undoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	checkImageDentified();
+	this->img->undo();
+	displayCVImage(img);
+}
+
 System::Void Project::easyGIMP::blurToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	checkImageDentified();
 	this->img->blur(3);

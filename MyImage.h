@@ -2,6 +2,8 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc.hpp>
+#include <iostream> 
+#include <stack>
 
 class MyImage
 {
@@ -22,12 +24,12 @@ public:
 	void save(std::string path);
 
 	void undoAll();
+	void undo();
 
 
 	System::Drawing::Size getSize();
 
 private:
-	cv::Mat img;
-	cv::Mat originalImg;
+	std::stack<cv::Mat> imgStack;
 };
 
