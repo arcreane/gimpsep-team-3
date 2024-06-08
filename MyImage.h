@@ -2,7 +2,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc.hpp>
-
+#include <opencv2/highgui.hpp>
 class MyImage
 {
 public:
@@ -17,12 +17,13 @@ public:
 	void detectEdges(int kernelSize, int upperThreshold, int lowerThreshold);
 	void brightnessAndContrastControl(double alpha, double beta);
 	void rgbControl(double r, double g, double b);
-
+	void erosion(int changingType, int kernelsize);
+	void dilation(int changingType, int kernelsize);
 
 	void save(std::string path);
 
 	void undoAll();
-
+	
 
 	System::Drawing::Size getSize();
 

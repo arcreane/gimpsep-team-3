@@ -104,3 +104,42 @@ System::Drawing::Size MyImage::getSize()
 {
 	return System::Drawing::Size(this->img.cols, this->img.rows);
 }
+
+
+void MyImage::erosion(int changingType, int kernelsize) {
+	int type = 0;
+	if (changingType == 0) {
+		type = cv::MORPH_RECT;
+	}
+	else if (changingType == 1) {
+		type = cv::MORPH_CROSS;
+	}
+	else if (changingType == 2) {
+		type = cv::MORPH_ELLIPSE;
+	}
+	cv::Mat element = getStructuringElement(type,
+		cv::Size(2 * kernelsize + 1, 2 * kernelsize + 1),
+		cv::Point(kernelsize, kernelsize));
+	cv::erode(this->img, this->img, element);
+
+}
+
+void MyImage::dilation(int changingType, int kernelsize) {
+	int type = 0;
+	if (changingType == 0) {
+		type = cv::MORPH_RECT;
+	}
+	else if (changingType == 1) {
+		type = cv::MORPH_CROSS;
+	}
+	else if (changingType == 2) {
+		type = cv::MORPH_ELLIPSE;
+	}
+	cv::Mat element = getStructuringElement(type,
+		cv::Size(2 * kernelsize + 1, 2 * kernelsize + 1),
+		cv::Point(kernelsize, kernelsize));
+	cv::dilate(this->img, this->img, element);
+}
+
+
+

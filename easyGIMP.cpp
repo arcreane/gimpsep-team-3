@@ -130,6 +130,14 @@ System::Void Project::easyGIMP::Detect_edges_Click(System::Object^ sender, Syste
 	this->play_resize->Visible = false;
 	this->input_height->Visible = false;
 	this->input_width->Visible = false;
+	this->changingType2->Visible = false;
+	this->kernelsize2->Visible = false;
+	this->erosion_go_button->Visible = false;
+	this->label_for_erosion->Visible = false;
+	this->changingType->Visible = false;
+	this->kernelsize->Visible = false;
+	this->dilate_go_button->Visible = false;
+	this->label_for_dilation->Visible = false;
 
 }
 
@@ -195,6 +203,14 @@ System::Void Project::easyGIMP::resize_Click(System::Object^ sender, System::Eve
 	this->input_kernel_size->Visible = false;
 	this->input_lower_threshold->Visible = false;
 	this->input_upper_threshold->Visible = false;
+	this->changingType2->Visible = false;
+	this->kernelsize2->Visible = false;
+	this->erosion_go_button->Visible = false;
+	this->label_for_erosion->Visible = false;
+	this->changingType->Visible = false;
+	this->kernelsize->Visible = false;
+	this->dilate_go_button->Visible = false;
+	this->label_for_dilation->Visible = false;
 }
 
 System::Void Project::easyGIMP::input_OnFocus(System::Object^ sender, System::EventArgs^ e)
@@ -235,6 +251,14 @@ System::Void Project::easyGIMP::play_Click(System::Object^ sender, System::Event
 	this->play_resize->Visible = false;
 	this->input_height->Visible = false;
 	this->input_width->Visible = false;
+	this->changingType2->Visible = false;
+	this->kernelsize2->Visible = false;
+	this->erosion_go_button->Visible = false;
+	this->label_for_erosion->Visible = false;
+	this->changingType->Visible = false;
+	this->kernelsize->Visible = false;
+	this->dilate_go_button->Visible = false;
+	this->label_for_dilation->Visible = false;
 
 	this->input_height->Text = "Height:";
 	this->input_width->Text = "Width:";
@@ -288,7 +312,15 @@ System::Void Project::easyGIMP::play_Canny_Click(System::Object^ sender, System:
 	this->play_Canny->Visible = false;
 	this->input_kernel_size->Visible = false;
 	this->input_lower_threshold->Visible = false;
-	this->input_upper_threshold->Visible = false;
+	this->input_upper_threshold->Visible = false; 
+	this->changingType2->Visible = false;
+	this->kernelsize2->Visible = false;
+	this->erosion_go_button->Visible = false;
+	this->label_for_erosion->Visible = false;
+	this->changingType->Visible = false;
+	this->kernelsize->Visible = false;
+	this->dilate_go_button->Visible = false;
+	this->label_for_dilation->Visible = false;
 
 	this->input_kernel_size->Text = "Kernel size:";
 	this->input_lower_threshold->Text = "Lower threshold:";
@@ -322,3 +354,129 @@ System::Void Project::easyGIMP::rgbButton_Click(System::Object^ sender, System::
 
 }
 
+System::Void Project::easyGIMP::Erode_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+	this->changingType2->Visible = true;
+	this->kernelsize2->Visible = true;
+	this->erosion_go_button->Visible = true;
+	this->label_for_erosion->Visible = true;
+
+
+	this->lable_for_resize->Visible = false;
+	this->play_resize->Visible = false;
+	this->input_height->Visible = false;
+	this->input_width->Visible = false;
+	this->label_for_Canny->Visible = false;
+	this->play_Canny->Visible = false;
+	this->input_kernel_size->Visible = false;
+	this->input_lower_threshold->Visible = false;
+	this->input_upper_threshold->Visible = false;
+	this->changingType->Visible = false;
+	this->kernelsize->Visible = false;
+	this->dilate_go_button->Visible = false;
+	this->label_for_dilation->Visible = false;
+
+	
+}
+
+System::Void Project::easyGIMP::Dilate_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	this->changingType->Visible = true;
+	this->kernelsize->Visible = true;
+	this->dilate_go_button->Visible = true;
+	this->label_for_dilation->Visible = true;
+
+	this->lable_for_resize->Visible = false;
+	this->play_resize->Visible = false;
+	this->input_height->Visible = false;
+	this->input_width->Visible = false;
+	this->label_for_Canny->Visible = false;
+	this->play_Canny->Visible = false;
+	this->input_kernel_size->Visible = false;
+	this->input_lower_threshold->Visible = false;
+	this->input_upper_threshold->Visible = false;
+	this->changingType2->Visible = false;
+	this->kernelsize2->Visible = false;
+	this->erosion_go_button->Visible = false;
+	this->label_for_erosion->Visible = false;
+
+}
+
+
+System::Void Project::easyGIMP::DilateReal_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+	checkImageDentified();
+
+	System::String^ kernelSize = this->kernelsize->Text;
+	System::String^ changingType = this->changingType->Text;
+
+	this->lable_for_resize->Visible = false;
+	this->play_resize->Visible = false;
+	this->input_height->Visible = false;
+	this->input_width->Visible = false;
+	this->label_for_Canny->Visible = false;
+	this->play_Canny->Visible = false;
+	this->input_kernel_size->Visible = false;
+	this->input_lower_threshold->Visible = false;
+	this->input_upper_threshold->Visible = false;
+	this->changingType2->Visible = false;
+	this->kernelsize2->Visible = false;
+	this->erosion_go_button->Visible = false;
+	this->label_for_erosion->Visible = false;
+
+
+	int ks = 0;
+	int ct = 0;
+	try
+	{
+		ks = System::Int32::Parse(kernelSize);
+		ct = System::Int32::Parse(changingType);
+
+		this->img->undoAll();
+		this->img->dilation(ct, ks);
+
+		displayCVImage(img);
+	}
+	catch (System::FormatException^ e)
+	{
+		MessageBox::Show("The kernel size and dilation type should be integer: " + e->Message);
+	}
+
+}
+
+System::Void Project::easyGIMP::ErodeReal_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	checkImageDentified();
+
+	System::String^ kernelSize = this->kernelsize2->Text;
+	System::String^ changingType = this->changingType2->Text;
+
+	this->lable_for_resize->Visible = false;
+	this->play_resize->Visible = false;
+	this->input_height->Visible = false;
+	this->input_width->Visible = false;
+	this->label_for_Canny->Visible = false;
+	this->play_Canny->Visible = false;
+	this->input_kernel_size->Visible = false;
+	this->input_lower_threshold->Visible = false;
+	this->input_upper_threshold->Visible = false;
+
+
+	int ks = 0;
+	int ct = 0;
+	try
+	{
+		ks = System::Int32::Parse(kernelSize);
+		ct = System::Int32::Parse(changingType);
+
+		this->img->undoAll();
+		this->img->erosion(ct, ks);
+
+		displayCVImage(img);
+	}
+	catch (System::FormatException^ e)
+	{
+		MessageBox::Show("The kernel size and erotion type should be integer: " + e->Message);
+	}
+}

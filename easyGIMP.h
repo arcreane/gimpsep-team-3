@@ -87,6 +87,25 @@ namespace Project {
 
 
 
+	private:System::Windows::Forms::Button^ Erode;
+	private:System::Windows::Forms::Button^ Dilate;
+	private: System::Windows::Forms::TextBox^ changingType;
+	private: System::Windows::Forms::TextBox^ kernelsize;
+	private: System::Windows::Forms::Button^ dilate_go_button;
+
+	private: System::Windows::Forms::Label^ label_for_dilation;
+	private: System::Windows::Forms::Label^ label_for_erosion;
+
+	private: System::Windows::Forms::TextBox^ changingType2;
+	private: System::Windows::Forms::TextBox^ kernelsize2;
+	private: System::Windows::Forms::Button^ erosion_go_button;
+
+
+
+
+
+
+
 
 
 
@@ -146,6 +165,16 @@ namespace Project {
 			this->input_lower_threshold = (gcnew System::Windows::Forms::TextBox());
 			this->input_kernel_size = (gcnew System::Windows::Forms::TextBox());
 			this->play_Canny = (gcnew System::Windows::Forms::Button());
+			this->Erode = (gcnew System::Windows::Forms::Button());
+			this->Dilate = (gcnew System::Windows::Forms::Button());
+			this->changingType = (gcnew System::Windows::Forms::TextBox());
+			this->kernelsize = (gcnew System::Windows::Forms::TextBox());
+			this->dilate_go_button = (gcnew System::Windows::Forms::Button());
+			this->label_for_dilation = (gcnew System::Windows::Forms::Label());
+			this->label_for_erosion = (gcnew System::Windows::Forms::Label());
+			this->changingType2 = (gcnew System::Windows::Forms::TextBox());
+			this->kernelsize2 = (gcnew System::Windows::Forms::TextBox());
+			this->erosion_go_button = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->contrastInput))->BeginInit();
 			this->contrastAndBrightnessBox->SuspendLayout();
@@ -224,7 +253,7 @@ namespace Project {
 			// 
 			// Save
 			// 
-			this->Save->Location = System::Drawing::Point(11, 518);
+			this->Save->Location = System::Drawing::Point(11, 583);
 			this->Save->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Save->Name = L"Save";
 			this->Save->Size = System::Drawing::Size(115, 44);
@@ -250,7 +279,7 @@ namespace Project {
 			this->contrastInput->DecimalPlaces = 1;
 			this->contrastInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			this->contrastInput->Location = System::Drawing::Point(4, 71);
-			this->contrastInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->contrastInput->Margin = System::Windows::Forms::Padding(4);
 			this->contrastInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			this->contrastInput->Name = L"contrastInput";
 			this->contrastInput->Size = System::Drawing::Size(115, 22);
@@ -265,9 +294,9 @@ namespace Project {
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastLabel);
 			this->contrastAndBrightnessBox->Controls->Add(this->contrastInput);
 			this->contrastAndBrightnessBox->Location = System::Drawing::Point(12, 110);
-			this->contrastAndBrightnessBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->contrastAndBrightnessBox->Margin = System::Windows::Forms::Padding(4);
 			this->contrastAndBrightnessBox->Name = L"contrastAndBrightnessBox";
-			this->contrastAndBrightnessBox->Padding = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->contrastAndBrightnessBox->Padding = System::Windows::Forms::Padding(4);
 			this->contrastAndBrightnessBox->Size = System::Drawing::Size(123, 191);
 			this->contrastAndBrightnessBox->TabIndex = 9;
 			this->contrastAndBrightnessBox->TabStop = false;
@@ -276,7 +305,7 @@ namespace Project {
 			// contrastAndBrightnessButton
 			// 
 			this->contrastAndBrightnessButton->Location = System::Drawing::Point(4, 153);
-			this->contrastAndBrightnessButton->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->contrastAndBrightnessButton->Margin = System::Windows::Forms::Padding(4);
 			this->contrastAndBrightnessButton->Name = L"contrastAndBrightnessButton";
 			this->contrastAndBrightnessButton->Size = System::Drawing::Size(113, 28);
 			this->contrastAndBrightnessButton->TabIndex = 12;
@@ -288,7 +317,7 @@ namespace Project {
 			// 
 			this->brightnessInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			this->brightnessInput->Location = System::Drawing::Point(4, 119);
-			this->brightnessInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->brightnessInput->Margin = System::Windows::Forms::Padding(4);
 			this->brightnessInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->brightnessInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->brightnessInput->Name = L"brightnessInput";
@@ -319,7 +348,7 @@ namespace Project {
 			// 
 			this->redInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
 			this->redInput->Location = System::Drawing::Point(3, 39);
-			this->redInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->redInput->Margin = System::Windows::Forms::Padding(4);
 			this->redInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->redInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->redInput->Name = L"redInput";
@@ -336,9 +365,9 @@ namespace Project {
 			this->rgbBox->Controls->Add(this->greenInput);
 			this->rgbBox->Controls->Add(this->redInput);
 			this->rgbBox->Location = System::Drawing::Point(12, 308);
-			this->rgbBox->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->rgbBox->Margin = System::Windows::Forms::Padding(4);
 			this->rgbBox->Name = L"rgbBox";
-			this->rgbBox->Padding = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->rgbBox->Padding = System::Windows::Forms::Padding(4);
 			this->rgbBox->Size = System::Drawing::Size(123, 105);
 			this->rgbBox->TabIndex = 11;
 			this->rgbBox->TabStop = false;
@@ -347,7 +376,7 @@ namespace Project {
 			// rgbButton
 			// 
 			this->rgbButton->Location = System::Drawing::Point(1, 71);
-			this->rgbButton->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->rgbButton->Margin = System::Windows::Forms::Padding(4);
 			this->rgbButton->Name = L"rgbButton";
 			this->rgbButton->Size = System::Drawing::Size(113, 28);
 			this->rgbButton->TabIndex = 16;
@@ -389,7 +418,7 @@ namespace Project {
 			// 
 			this->blueInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
 			this->blueInput->Location = System::Drawing::Point(79, 39);
-			this->blueInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->blueInput->Margin = System::Windows::Forms::Padding(4);
 			this->blueInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->blueInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->blueInput->Name = L"blueInput";
@@ -400,7 +429,7 @@ namespace Project {
 			// 
 			this->greenInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
 			this->greenInput->Location = System::Drawing::Point(43, 39);
-			this->greenInput->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->greenInput->Margin = System::Windows::Forms::Padding(4);
 			this->greenInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
 			this->greenInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, System::Int32::MinValue });
 			this->greenInput->Name = L"greenInput";
@@ -410,7 +439,7 @@ namespace Project {
 			// input_height
 			// 
 			this->input_height->Location = System::Drawing::Point(201, 49);
-			this->input_height->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->input_height->Margin = System::Windows::Forms::Padding(4);
 			this->input_height->Name = L"input_height";
 			this->input_height->Size = System::Drawing::Size(107, 22);
 			this->input_height->TabIndex = 8;
@@ -421,7 +450,7 @@ namespace Project {
 			// input_width
 			// 
 			this->input_width->Location = System::Drawing::Point(317, 49);
-			this->input_width->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->input_width->Margin = System::Windows::Forms::Padding(4);
 			this->input_width->Name = L"input_width";
 			this->input_width->Size = System::Drawing::Size(107, 22);
 			this->input_width->TabIndex = 9;
@@ -434,7 +463,7 @@ namespace Project {
 			this->play_resize->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->play_resize->Location = System::Drawing::Point(431, 43);
-			this->play_resize->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->play_resize->Margin = System::Windows::Forms::Padding(4);
 			this->play_resize->Name = L"play_resize";
 			this->play_resize->Size = System::Drawing::Size(40, 38);
 			this->play_resize->TabIndex = 10;
@@ -457,7 +486,7 @@ namespace Project {
 			// resize
 			// 
 			this->resize->Location = System::Drawing::Point(12, 74);
-			this->resize->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->resize->Margin = System::Windows::Forms::Padding(4);
 			this->resize->Name = L"resize";
 			this->resize->Size = System::Drawing::Size(115, 28);
 			this->resize->TabIndex = 12;
@@ -480,7 +509,7 @@ namespace Project {
 			// input_upper_threshold
 			// 
 			this->input_upper_threshold->Location = System::Drawing::Point(360, 49);
-			this->input_upper_threshold->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->input_upper_threshold->Margin = System::Windows::Forms::Padding(4);
 			this->input_upper_threshold->Name = L"input_upper_threshold";
 			this->input_upper_threshold->Size = System::Drawing::Size(149, 22);
 			this->input_upper_threshold->TabIndex = 14;
@@ -491,7 +520,7 @@ namespace Project {
 			// input_lower_threshold
 			// 
 			this->input_lower_threshold->Location = System::Drawing::Point(201, 49);
-			this->input_lower_threshold->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->input_lower_threshold->Margin = System::Windows::Forms::Padding(4);
 			this->input_lower_threshold->Name = L"input_lower_threshold";
 			this->input_lower_threshold->Size = System::Drawing::Size(149, 22);
 			this->input_lower_threshold->TabIndex = 13;
@@ -502,7 +531,7 @@ namespace Project {
 			// input_kernel_size
 			// 
 			this->input_kernel_size->Location = System::Drawing::Point(519, 49);
-			this->input_kernel_size->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->input_kernel_size->Margin = System::Windows::Forms::Padding(4);
 			this->input_kernel_size->Name = L"input_kernel_size";
 			this->input_kernel_size->Size = System::Drawing::Size(100, 22);
 			this->input_kernel_size->TabIndex = 17;
@@ -515,7 +544,7 @@ namespace Project {
 			this->play_Canny->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->play_Canny->Location = System::Drawing::Point(633, 43);
-			this->play_Canny->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->play_Canny->Margin = System::Windows::Forms::Padding(4);
 			this->play_Canny->Name = L"play_Canny";
 			this->play_Canny->Size = System::Drawing::Size(40, 38);
 			this->play_Canny->TabIndex = 18;
@@ -524,13 +553,139 @@ namespace Project {
 			this->play_Canny->Visible = false;
 			this->play_Canny->Click += gcnew System::EventHandler(this, &easyGIMP::play_Canny_Click);
 			// 
+			// Erode
+			// 
+			this->Erode->Location = System::Drawing::Point(11, 517);
+			this->Erode->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Erode->Name = L"Erode";
+			this->Erode->Size = System::Drawing::Size(115, 28);
+			this->Erode->TabIndex = 8;
+			this->Erode->Text = L"Erode";
+			this->Erode->UseVisualStyleBackColor = true;
+			this->Erode->Click += gcnew System::EventHandler(this, &easyGIMP::Erode_Click);
+			// 
+			// Dilate
+			// 
+			this->Dilate->Location = System::Drawing::Point(11, 551);
+			this->Dilate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Dilate->Name = L"Dilate";
+			this->Dilate->Size = System::Drawing::Size(115, 28);
+			this->Dilate->TabIndex = 9;
+			this->Dilate->Text = L"Dilate";
+			this->Dilate->UseVisualStyleBackColor = true;
+			this->Dilate->Click += gcnew System::EventHandler(this, &easyGIMP::Dilate_Click);
+			// 
+			// changingType
+			// 
+			this->changingType->Location = System::Drawing::Point(201, 50);
+			this->changingType->Margin = System::Windows::Forms::Padding(4);
+			this->changingType->Name = L"changingType";
+			this->changingType->Size = System::Drawing::Size(179, 22);
+			this->changingType->TabIndex = 19;
+			this->changingType->Text = L"Dilation Type:";
+			this->changingType->Visible = false;
+			this->changingType->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// kernelsize
+			// 
+			this->kernelsize->Location = System::Drawing::Point(519, 50);
+			this->kernelsize->Margin = System::Windows::Forms::Padding(4);
+			this->kernelsize->Name = L"kernelsize";
+			this->kernelsize->Size = System::Drawing::Size(100, 22);
+			this->kernelsize->TabIndex = 20;
+			this->kernelsize->Text = L"Kernel size:";
+			this->kernelsize->Visible = false;
+			this->kernelsize->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// dilate_go_button
+			// 
+			this->dilate_go_button->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->dilate_go_button->Location = System::Drawing::Point(633, 42);
+			this->dilate_go_button->Margin = System::Windows::Forms::Padding(4);
+			this->dilate_go_button->Name = L"dilate_go_button";
+			this->dilate_go_button->Size = System::Drawing::Size(40, 38);
+			this->dilate_go_button->TabIndex = 21;
+			this->dilate_go_button->Text = L"⏵";
+			this->dilate_go_button->UseVisualStyleBackColor = true;
+			this->dilate_go_button->Visible = false;
+			this->dilate_go_button->Click += gcnew System::EventHandler(this, &easyGIMP::DilateReal_Click);
+			// 
+			// label_for_dilation
+			// 
+			this->label_for_dilation->AutoSize = true;
+			this->label_for_dilation->Location = System::Drawing::Point(202, 15);
+			this->label_for_dilation->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label_for_dilation->Name = L"label_for_dilation";
+			this->label_for_dilation->Size = System::Drawing::Size(495, 16);
+			this->label_for_dilation->TabIndex = 22;
+			this->label_for_dilation->Text = L"Enter the dilation type (0 for RECT, 1 for CROSS, 2 for ELLIPSE) and the kernel s"
+				L"ize:";
+			this->label_for_dilation->Visible = false;
+			// 
+			// label_for_erosion
+			// 
+			this->label_for_erosion->AutoSize = true;
+			this->label_for_erosion->Location = System::Drawing::Point(202, 15);
+			this->label_for_erosion->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label_for_erosion->Name = L"label_for_erosion";
+			this->label_for_erosion->Size = System::Drawing::Size(497, 16);
+			this->label_for_erosion->TabIndex = 23;
+			this->label_for_erosion->Text = L"Enter the erosion type (0 for RECT, 1 for CROSS, 2 for ELLIPSE) and the kernel si"
+				L"ze:";
+			this->label_for_erosion->Visible = false;
+			// 
+			// changingType2
+			// 
+			this->changingType2->Location = System::Drawing::Point(201, 49);
+			this->changingType2->Margin = System::Windows::Forms::Padding(4);
+			this->changingType2->Name = L"changingType2";
+			this->changingType2->Size = System::Drawing::Size(179, 22);
+			this->changingType2->TabIndex = 24;
+			this->changingType2->Text = L"Erosion Type:";
+			this->changingType2->Visible = false;
+			this->changingType2->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// kernelsize2
+			// 
+			this->kernelsize2->Location = System::Drawing::Point(517, 50);
+			this->kernelsize2->Margin = System::Windows::Forms::Padding(4);
+			this->kernelsize2->Name = L"kernelsize2";
+			this->kernelsize2->Size = System::Drawing::Size(100, 22);
+			this->kernelsize2->TabIndex = 25;
+			this->kernelsize2->Text = L"Kernel size:";
+			this->kernelsize2->Visible = false;
+			this->kernelsize2->Click += gcnew System::EventHandler(this, &easyGIMP::input_OnFocus);
+			// 
+			// erosion_go_button
+			// 
+			this->erosion_go_button->Font = (gcnew System::Drawing::Font(L"Goudy Stout", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->erosion_go_button->Location = System::Drawing::Point(633, 43);
+			this->erosion_go_button->Margin = System::Windows::Forms::Padding(4);
+			this->erosion_go_button->Name = L"erosion_go_button";
+			this->erosion_go_button->Size = System::Drawing::Size(40, 38);
+			this->erosion_go_button->TabIndex = 26;
+			this->erosion_go_button->Text = L"⏵";
+			this->erosion_go_button->UseVisualStyleBackColor = true;
+			this->erosion_go_button->Visible = false;
+			this->erosion_go_button->Click += gcnew System::EventHandler(this, &easyGIMP::ErodeReal_Click);
+			// 
 			// easyGIMP
 			// 
 			this->AllowDrop = true;
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
-			this->ClientSize = System::Drawing::Size(1347, 859);
+			this->ClientSize = System::Drawing::Size(1347, 846);
+			this->Controls->Add(this->erosion_go_button);
+			this->Controls->Add(this->kernelsize2);
+			this->Controls->Add(this->changingType2);
+			this->Controls->Add(this->label_for_erosion);
+			this->Controls->Add(this->label_for_dilation);
+			this->Controls->Add(this->dilate_go_button);
+			this->Controls->Add(this->kernelsize);
+			this->Controls->Add(this->changingType);
 			this->Controls->Add(this->rgbBox);
 			this->Controls->Add(this->contrastAndBrightnessBox);
 			this->Controls->Add(this->play_Canny);
@@ -551,6 +706,8 @@ namespace Project {
 			this->Controls->Add(this->decrease);
 			this->Controls->Add(this->increase);
 			this->Controls->Add(this->pictureBox);
+			this->Controls->Add(this->Erode);
+			this->Controls->Add(this->Dilate);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"easyGIMP";
 			this->Text = L"easyGIMP";
@@ -608,5 +765,14 @@ namespace Project {
 		System::Void contrastAndBrightnessButton_Click(System::Object^ sender, System::EventArgs^ e);
 
 		System::Void rgbButton_Click(System::Object^ sender, System::EventArgs^ e);
+
+
+		System::Void Erode_Click(System::Object^ sender, System::EventArgs^ e);
+
+		System::Void Dilate_Click(System::Object^ sender, System::EventArgs^ e);
+
+		System::Void DilateReal_Click(System::Object^ sender, System::EventArgs^ e);
+
+		System::Void ErodeReal_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
