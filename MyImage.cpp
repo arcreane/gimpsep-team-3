@@ -109,11 +109,15 @@ void MyImage::undoAll()
 	while (imgStack.size() > 1) {
 		this->imgStack.pop();
 	}
+	cv::Size size = getCVMat().size();
+	MyImage::resize(0, 0, size);
 }
 
 void MyImage::undo()
 {
 	this->imgStack.pop();
+	cv::Size size = getCVMat().size();
+	MyImage::resize(0, 0, size);
 }
 
 System::Drawing::Size MyImage::getSize()

@@ -313,12 +313,14 @@ System::Void Project::easyGIMP::zoomMinusToolStripMenuItem1_Click(System::Object
 System::Void Project::easyGIMP::undoAllToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	checkImageDentified();
 	this->img->undoAll();
+	resizePictureBox(this->img);
 	displayCVImage(img);
 }
 
 System::Void Project::easyGIMP::undoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	checkImageDentified();
 	this->img->undo();
+	resizePictureBox(this->img);
 	displayCVImage(img);
 }
 
