@@ -1,4 +1,4 @@
-V0 of easyGIMP app
-contain all mandatory functions from project rec
-has different GUI from version on main branch
+V0.2 of easyGIMP app
+doesnt contsi dilatation / erosion functions (to find this functions check branch mainV0)
+has different GUI from version on mainV0 branch
 has additional functions for file manegment and undo function
